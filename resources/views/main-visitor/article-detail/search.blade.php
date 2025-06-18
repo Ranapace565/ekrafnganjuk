@@ -1,33 +1,5 @@
-<!--
-Install the "flowbite-typography" NPM package to apply styles and format the article content:
-
-URL: https://flowbite.com/docs/components/typography/
--->
-<section class="bg-white dark:bg-gray-900 sm:px-6">
-    <div class="max-w-screen-xl px-4 py-4 mx-auto">
-
-        {{-- tampilan artikel --}}
-        <div class="mb-6 lg:mb-0 lg:mt-0 mt-5 lg:col-span-9 ">
-            <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
-                <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-                    <article
-                        class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-                        @include('main-visitor.article-detail.boomb')
-                    </article>
-                </div>
-            </main>
-        </div>
-    </div>
-</section>
-{{-- <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
-    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-        <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-            @include('main-visitor.article-detail.boomb')
-        </article>
-    </div>
-</main>
-
-<div class="hidden lg:block">
+{{-- pencarian --}}
+<div class="lg:col-span-3 hidden lg:block">
     <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 space-y-4 sticky top-16 z-[99]">
         <form class="flex items-center my-4">
             <label for="search" class="sr-only">Cari</label>
@@ -60,4 +32,4 @@ URL: https://flowbite.com/docs/components/typography/
             </a>
         </div>
     </div>
-</div> --}}
+</div>

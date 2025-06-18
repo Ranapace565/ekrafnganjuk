@@ -3,7 +3,7 @@
         <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Berita Terkini</h2>
         <div class="flex flex-row gap-6 overflow-x-auto px-2 pb-6 dark:dark scrollbar-custom ">
             @for ($i = 0; $i < 6; $i++)
-                <x-ui.card-article
+                <x-ui.card-article size="w-[300px]"
                     title="Judul Artikel Kamu Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam velit praesentium dolores aliquam similique unde. Corrupti quo assumenda cum incidunt consequuntur earum. Veritatis!"
                     description="Ini deskripsi singkat dari artikel yang kamu tampilkan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam velit praesentium dolores aliquam similique unde. Corrupti quo assumenda cum incidunt consequuntur earum. Veritatis!"
                     image="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png"
