@@ -1,6 +1,5 @@
-{{-- pencarian --}}
 <div class="lg:col-span-3 hidden lg:block">
-    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 space-y-4 sticky top-16 z-[99]">
+    <div class=" shadow-md rounded-lg p-4 space-y-4 sticky top-16 z-[99]">
         <form class="flex items-center my-4">
             <label for="search" class="sr-only">Cari</label>
             <div class="relative w-full">
