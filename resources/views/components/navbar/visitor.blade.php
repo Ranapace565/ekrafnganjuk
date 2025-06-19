@@ -32,9 +32,47 @@
                         <x-navbar.visitor-link href="/sektor" :active="request()->is('sektor')">
                             Sektor
                         </x-navbar.visitor-link>
-                        <x-navbar.visitor-link href="/informasi" :active="request()->is('informasi')">
+
+                        {{-- <x-navbar.visitor-link href="/informasi" :active="request()->is('informasi')">
                             Informasi
-                        </x-navbar.visitor-link>
+                        </x-navbar.visitor-link> --}}
+
+                        <button id="dropdownNavButton" data-dropdown-toggle="dropdownNav" data-dropdown-delay="500"
+                            data-dropdown-trigger="hover"
+                            class="{{ request()->is('informasi') ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                            type="button">Informasi
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdownNav"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownNavButton">
+                                <li>
+                                    <a href="/artikel"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Artikel</a>
+                                </li>
+                                <li>
+                                    <a href="/event"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Event</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                                        out</a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -149,9 +187,45 @@
             <x-navbar.visitor-link-mobile href="/sektor" :active="request()->is('sektor')">
                 Sektor
             </x-navbar.visitor-link-mobile>
-            <x-navbar.visitor-link-mobile href="/informasi" :active="request()->is('informasi')">
+
+            <button id="dropdownNav2Button" data-dropdown-toggle="dropdownNav2" data-dropdown-delay="500"
+                data-dropdown-trigger="hover"
+                class="{{ request()->is('informasi') ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium flex items-center w-full"
+                type="button">Informasi
+                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdownNav2"
+                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownNav2Button">
+                    <li>
+                        <a href="/artikel"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Artikel</a>
+                    </li>
+                    <li>
+                        <a href="/event"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Event</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                            out</a>
+                    </li>
+                </ul>
+            </div>
+
+            {{-- <x-navbar.visitor-link-mobile href="/informasi" :active="request()->is('informasi')">
                 Informasi
-            </x-navbar.visitor-link-mobile>
+            </x-navbar.visitor-link-mobile> --}}
 
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">

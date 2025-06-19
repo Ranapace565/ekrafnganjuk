@@ -7,14 +7,22 @@
         </a>
     </div>
     <div class="pt-6 flex items-center justify-between flex-col">
-        <div class="mb-4 flex items-center justify-between gap-4">
-            <span
-                class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                sektor </span>
+        <div class="mb-4 flex items-center justify-between gap-1">
+            <a href="">
+                <span
+                    class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                    {{ Str::limit('Lorem ipsum dolor sit amet.', 10, '..') }}</span>
+            </a>
+            <a href="">
+                <span
+                    class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                    {{ Str::limit('Lorem ipsum dolor sit amet.', 10, '..') }}</span>
+            </a>
         </div>
 
-        <a href="#" class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">Nama
-            Usaha</a>
+
+        <a href="#"
+            class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ Str::limit('Lorem ipsum dolor sit amet. Lorem, ipsum dolor.', 20, '...') }}</a>
         <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -25,9 +33,10 @@
                 <circle cx="12" cy="10" r="2" fill="currentColor" />
             </svg>
 
-            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Alamat Jalan.</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                {{ Str::limit('Lorem ipsum dolor sit amet. Lorem, ipsum dolor.', 30, '...') }}</p>
         </div>
-        <ul class="mt-2 flex items-center gap-4">
+        {{-- <ul class="mt-2 flex items-center gap-4">
             <a href="">
                 <li class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -40,16 +49,16 @@
                     <p class="text-sm font-medium text-gray-500 dark:text-gray-400">50</p>
                 </li>
             </a>
-        </ul>
+        </ul> --}}
 
         <div class="mt-4 flex items-center justify-between gap-4">
 
-            <button type="button"
+            <a type="button"
                 class="inline-flex items-center rounded-lg bg-primary-100 px-5 py-2.5 text-sm font-medium text-primary-400 hover:bg-primary-800
                 hover:text-white focus:outline-none focus:ring-4  focus:ring-primary-300 dark:bg-primary-200 
                 dark:text-primary-700 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                 Selengkapnya
-            </button>
+            </a>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 {{-- <section class=""> --}}
-<section class=" sticky top-16 z-[9999] bg-white dark:bg-gray-900">
+<section class=" sticky top-16 z-[9998] bg-white dark:bg-gray-900">
     <div class="max-w-screen-xl mx-auto px-4 bg-primary-600 shadow-md rounded-b-2xl">
         <!-- Start coding here -->
         <div class="relative ">
