@@ -15,6 +15,7 @@
             {{--  --}}
             <div class="mb-6 lg:mb-0 lg:mt-0 mt-5 lg:col-span-9 flex flex-col justify-center">
                 @include('main-visitor.article-detail.body')
+                @include('main-visitor.article-detail.comment')
             </div>
         </div>
     </section>
