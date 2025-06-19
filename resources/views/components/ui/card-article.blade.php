@@ -1,21 +1,26 @@
+{{-- <article class="flex-shrink-0  w-[300px] flex flex-col  transition-colors max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden"> --}}
 <article
-    class="flex-shrink-0  w-[300px] flex flex-col  transition-colors max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+    class="flex-shrink-0  {{ $size }} flex flex-col  transition-colors bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
 
-
-    <a href="#">
+    <a href="/artikel-detail">
         <img src="{{ $image ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png' }}"
             alt="{{ $title }}" class="w-full h-48 object-cover">
     </a>
     <div class="p-5">
+        <div class="mb-4 flex items-center justify-between gap-4">
+            <span
+                class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                kategori</span>
+        </div>
         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <a href="#">{{ Str::limit($title, 30, '...') }}</a>
+            <a href="/artikel-detail">{{ Str::limit($title, 30, '...') }}</a>
         </h2>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">
             {{ Str::limit($description, 70, '...') }}
         </p>
-        <a href="{{ $link ?? '#' }}"
+        <a href="{{ $link ?? '/artikel-detail' }}"
             class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium">
-            Baca dalam 2 menit
+            Baca selengkapnya
             <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
