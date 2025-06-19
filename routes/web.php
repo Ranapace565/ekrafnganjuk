@@ -39,8 +39,12 @@ Route::get('/artikel-detail', function () {
     return view('main-visitor.article-detail');
 });
 
-Route::get('/artikel-detail', function () {
-    return view('main-visitor.article-detail');
+Route::get('/event', function () {
+    return view('main-visitor.event');
+});
+
+Route::get('/event-detail', function () {
+    return view('main-visitor.event-detail');
 });
 
 Route::get('/profil', function () {

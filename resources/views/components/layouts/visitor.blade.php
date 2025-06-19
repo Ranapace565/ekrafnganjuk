@@ -8,7 +8,7 @@
 
         <x-navbar.visitor></x-navbar.visitor>
 
-        <main class="pt-10">
+        <main class="pt-10 bg-white dark:bg-gray-900">
             <div class="mx-auto pt-6">
 
                 <x-ui.alert></x-ui.alert>
