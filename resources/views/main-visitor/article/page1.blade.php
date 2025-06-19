@@ -53,7 +53,7 @@
                             title="Judul Artikel Kamu Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam velit praesentium dolores aliquam similique unde. Corrupti quo assumenda cum incidunt consequuntur earum. Veritatis!"
                             description="Ini deskripsi singkat dari artikel yang kamu tampilkan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam velit praesentium dolores aliquam similique unde. Corrupti quo assumenda cum incidunt consequuntur earum. Veritatis!"
                             image="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png"
-                            link="/detail-artikel" />
+                            link="/artikel-detail" />
                     @endfor
                 </div>
                 <x-ui.pagination />
