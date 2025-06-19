@@ -51,7 +51,7 @@
                 </h2>
                 <div class="mb-4 grid gap-4 md:mb-8 md:grid-cols-2 grid-cols-1">
                     @for ($i = 0; $i < 9; $i++)
-                        <x-ui.card-event />
+                        <x-ui.card-event size="" />
                     @endfor
                 </div>
                 <x-ui.pagination />
