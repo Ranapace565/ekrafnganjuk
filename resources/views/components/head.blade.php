@@ -19,7 +19,7 @@
     {{-- modal --}}
     {{-- <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script> --}}
 
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     {{-- efek scrollbar card-low --}}
     <style>
