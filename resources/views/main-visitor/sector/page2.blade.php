@@ -5,7 +5,7 @@
     </div>
 </section>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{{-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> --}}
 
 <script>
     const map = L.map('map').setView([-7.599676, 111.904380], 10);

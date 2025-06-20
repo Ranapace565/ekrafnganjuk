@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/registration', function () {
+    return view('main-visitor.registration');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -45,6 +49,10 @@ Route::get('/event', function () {
 
 Route::get('/event-detail', function () {
     return view('main-visitor.event-detail');
+});
+
+Route::get('/usaha', function () {
+    return view('main-visitor.business-detail');
 });
 
 Route::get('/profil', function () {
