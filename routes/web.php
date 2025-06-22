@@ -62,3 +62,13 @@ Route::get('/profil', function () {
 Route::get('/keluar', function () {
     return view('main-visitor.index');
 });
+
+Route::prefix('entrepreneur')->group(function () {
+    Route::get('/', function () {
+        return view('main-entrepreneur.index');
+    });
+
+    Route::get('/profile', function () {
+        return view('main-entrepreneur.profile');
+    });
+});

@@ -1,3 +1,22 @@
-<div>
-    <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
-</div>
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100 ">
+
+<x-head></x-head>
+
+<body class="h-full">
+    <div class="min-h-full">
+        <x-sidebar.entrepreneur />
+
+        <main class="sm:ml-64 mt-14 bg-white dark:bg-gray-900">
+            <div class="mx-auto">
+
+                <x-ui.alert></x-ui.alert>
+
+                {{ $slot }}
+
+                <x-footer></x-footer>
+            </div>
+        </main>
+</body>
+
+</html>

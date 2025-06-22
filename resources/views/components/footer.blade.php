@@ -36,7 +36,7 @@
                     </ul>
                 </div>
                 <div class="pt-4">
-                    <h2 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">Support By </h2>
+                    <h2 class="mb-6 text-2xl font-semibold text-gray-900 dark:text-white">Didukung Oleh</h2>
                     <ul class="text-gray-900 ">
                         <li class="mb-4 flex">
                             <img src="https://informasi-ekonomi-kreatif-nganjuk.pbltifnganjuk.com/assets/svg/arsitektur.svg"

@@ -6,8 +6,7 @@
 <body class="h-full">
     <div class="min-h-full">
 
-        <x-navbar.visitor></x-navbar.visitor>
-
+        <x-navbar.visitor />
         <main class="pt-10 bg-white dark:bg-gray-900">
             <div class="mx-auto pt-6">
 
@@ -18,7 +17,6 @@
         </main>
 
         <x-footer></x-footer>
-    </div>
 
 </body>
 
