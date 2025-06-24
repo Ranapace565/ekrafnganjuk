@@ -23,7 +23,7 @@
                 </form>
                 @for ($i = 0; $i < 5; $i++)
                     <div class="border-t border-gray-200">
-                        <x-ui.comment id="{{ $i }}" name="Michael Gough" date="2022-02-08"
+                        <x-ui.comment name="Michael Gough" date="2022-02-08"
                             photo="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                             content="Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy." />
                         {{-- balasan --}}

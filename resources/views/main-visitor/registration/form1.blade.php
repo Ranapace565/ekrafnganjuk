@@ -34,8 +34,7 @@
                     </select>
                 </div>
                 <div class="w-full">
-                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                        Pemilik</label>
+                    <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pengelola</label>
                     <input type="text" name="brand" id="brand"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Product brand" required="">
@@ -85,7 +84,7 @@
                         placeholder="Your description here"></textarea>
                 </div>
             </div>
-            <div class="w-full flex justify-end">
+            <div class="w-full flex justify-end space-x-2">
                 <button type="submit"
                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-900 dark:text-white hover:text-white rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-red-600">
                     Batal

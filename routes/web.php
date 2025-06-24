@@ -68,6 +68,17 @@ Route::prefix('entrepreneur')->group(function () {
         return view('main-entrepreneur.index');
     });
 
+    Route::get('/business', function () {
+        return view('main-entrepreneur.business');
+    });
+
+    Route::get('/product', function () {
+        return view('main-entrepreneur.product');
+    });
+     Route::get('/product/form', function () {
+        return view('main-entrepreneur.product-form');
+    });
+
     Route::get('/profile', function () {
         return view('main-entrepreneur.profile');
     });
