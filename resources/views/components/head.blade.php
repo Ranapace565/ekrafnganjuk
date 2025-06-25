@@ -43,75 +43,46 @@
             height: 400
         });
     </script> --}}
-    <script src="https://cdn.tiny.cloud/1/59bgrfn8j96kjio720rnwpwmc6nwi3dc938hvn32lb1hbac7/tinymce/7/tinymce.min.js"
+    {{-- <script src="https://cdn.tiny.cloud/1/59bgrfn8j96kjio720rnwpwmc6nwi3dc938hvn32lb1hbac7/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
-        tinymce.init({
-            selector: 'textarea',
-            menu: {
-                file: {
-                    title: 'File',
-                    items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations'
-                },
-                edit: {
-                    title: 'Edit',
-                    items: 'undo redo | cut copy paste pastetext | selectall | searchreplace'
-                },
-                view: {
-                    title: 'View',
-                    items: 'code revisionhistory | visualaid visualchars visualblocks | spellchecker | preview fullscreen | showcomments'
-                },
-                insert: {
-                    title: 'Insert',
-                    items: 'image link media addcomment pageembed codesample inserttable | math | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime'
-                },
-                format: {
-                    title: 'Format',
-                    items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | forecolor backcolor | language | removeformat'
-                },
-                tools: {
-                    title: 'Tools',
-                    items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount'
-                },
-                table: {
-                    title: 'Table',
-                    items: 'inserttable | cell row column | advtablesort | tableprops deletetable'
-                },
-                help: {
-                    title: 'Help',
-                    items: 'help'
-                }
-            },
-            plugins: 'code table lists | image code ',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image',
-            images_upload_url: '/upload-image', // route Laravel untuk handle upload
-            height: 400,
-            automatic_uploads: true,
-            images_upload_handler: function(blobInfo, success, failure) {
-                let formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
+        var editor_config = {
+            path_absolute: "/",
+            selector: "textarea",
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            relative_urls: false,
+            file_browser_callback: function(field_name, url, type, win) {
+                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName(
+                    'body')[0].clientWidth;
+                var y = window.innerHeight || document.documentElement.clientHeight || document
+                    .getElementsByTagName('body')[0].clientHeight;
 
-                fetch('/upload-image', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(result => {
-                        if (result.location) {
-                            success(result.location); // lokasi URL gambar
-                        } else {
-                            failure('Upload gagal: tidak ada URL gambar.');
-                        }
-                    })
-                    .catch(error => {
-                        failure('Upload error: ' + error.message);
-                    });
+                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                if (type == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                } else {
+                    cmsURL = cmsURL + "&type=Files";
+                }
+
+                tinyMCE.activeEditor.windowManager.open({
+                    file: cmsURL,
+                    title: 'Filemanager',
+                    width: x * 0.8,
+                    height: y * 0.8,
+                    resizable: "yes",
+                    close_previous: "no"
+                });
             }
-        });
-    </script>
+        };
+
+        tinymce.init(editor_config);
+    </script> --}}
 
     {{-- efek scrollbar card-low --}}
     <style>
