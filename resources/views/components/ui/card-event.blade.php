@@ -1,21 +1,21 @@
 <div class="">
     <div
-        class="grid {{ $size }}  grid-cols-12 bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        class=" sm:grid {{ $size }}  grid-cols-12 bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
         <img class="col-span-4 w-full h-full object-cover"
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" alt="">
         <div class="col-span-8 flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur', 40, '..') }}
+            <h5 class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
+                {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur', 20, '..') }}
             </h5>
             <a href="">
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    {{ Str::limit('Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.', 20, '..') }}</span>
+                    {{ Str::limit('Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.', 10, '..') }}</span>
             </a>
             <a href="">
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    Jumat, 15 Desember 2025</span>
+                    {{ Str::limit('Jumat, 15 Desember 2025', 15, '...') }}</span>
             </a>
 
             <div class="flex items-center gap-2 my-2">
@@ -28,16 +28,15 @@
                     <circle cx="12" cy="10" r="2" fill="currentColor" />
                 </svg>
 
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    {{ Str::limit('Lorem ipsum dolor sit amet. Lorem, ipsum dolor.', 30, '...') }}</p>
+                <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                    {{ Str::limit('Lorem ipsum dolor sit amet. Lorem, ipsum dolor.', 20, '...') }}</p>
             </div>
             {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.', 60, '...') }}
         </p> --}}
             <div class="flex justify-end">
                 <a href="{{ '/event-detail' }}"
-                    class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium ">
-                    Baca selengkapnya
+                    class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium ">selengkapnya
                     <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

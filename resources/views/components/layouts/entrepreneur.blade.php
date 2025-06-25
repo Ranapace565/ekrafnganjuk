@@ -7,7 +7,7 @@
     <div class="min-h-full">
         <x-sidebar.entrepreneur />
 
-        <main class="sm:ml-64 mt-14 bg-white dark:bg-gray-900">
+        <main class="lg:ml-64 mt-14 bg-white dark:bg-gray-900">
             <div class="mx-auto">
 
                 <x-ui.alert></x-ui.alert>

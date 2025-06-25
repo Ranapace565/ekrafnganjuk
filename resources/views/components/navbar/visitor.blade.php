@@ -40,7 +40,7 @@
 
                         <button id="dropdownNavButton" data-dropdown-toggle="dropdownNav" data-dropdown-delay="500"
                             data-dropdown-trigger="hover"
-                            class="{{ request()->is('informasi') ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium flex items-center"
+                            class="{{ request()->is('informasi') ? 'text-primary-500' : 'text-gray-700 hover:text-primary-500' }} rounded-md px-3 py-2 text-sm font-medium flex items-center"
                             type="button">Informasi
                             <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 10 6">
@@ -200,7 +200,7 @@
 
             <button id="dropdownNav2Button" data-dropdown-toggle="dropdownNav2" data-dropdown-delay="500"
                 data-dropdown-trigger="hover"
-                class="{{ request()->is('informasi') ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium flex items-center w-full"
+                class="{{ request()->is('informasi') ? 'text-primary-500' : 'text-gray-700  hover:text-primary-500' }} rounded-md px-3 py-2 text-sm font-medium flex items-center w-full"
                 type="button">Informasi
                 <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 10 6">

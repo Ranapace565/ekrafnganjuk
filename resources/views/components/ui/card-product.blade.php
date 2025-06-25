@@ -59,7 +59,14 @@
     'deleteUrl' => '#',
 ])
 
-<div class="rounded-lg border border-gray-200 bg-white p-6 pt-2 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+<div class="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+
+    <div class="h-24 w-full ">
+        <a href="{{ $detailUrl }}">
+            <img class="rounded-t-lg w-full h-full object-cover" src="{{ $image }}" alt="Product Image" />
+        </a>
+    </div>
+
     <div class="flex justify-end m-1">
         <button id="dropdownButton-{{ md5($id) }}" data-dropdown-toggle="dropdown-{{ md5($id) }}"
             class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"
@@ -90,21 +97,15 @@
         </div>
     </div>
 
-    <div class="h-24 w-full ">
-        <a href="{{ $detailUrl }}">
-            <img class="w-full h-full object-cover" src="{{ $image }}" alt="Product Image" />
-        </a>
-    </div>
-
-    <div class="pt-6">
+    <div class="my-1 px-2">
         <a href="{{ $detailUrl }}"
             class="text-sm font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
             {{ \Illuminate\Support\Str::limit($title, 30, '...') }}
         </a>
 
         <div class="mt-4 block items-center justify-between gap-4">
-            <p class="sm:grid-cols-1 text-xl font-extrabold leading-tight text-gray-900 dark:text-white">
-                Rp. {{ \Illuminate\Support\Str::limit($price, 9, '..') }}
+            <p class="sm:grid-cols-1 text-sm font-extrabold leading-tight text-gray-900 dark:text-white">
+                <span class="text-xs">Rp.</span> {{ Str::limit($price, 9, '..') }}
             </p>
         </div>
     </div>

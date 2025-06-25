@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\upload\ImageUploadController;
+
+Route::post('/upload-image', [ImageUploadController::class, 'store']);
+
 
 Route::get('/registration', function () {
     return view('main-visitor.registration');
@@ -75,8 +79,15 @@ Route::prefix('entrepreneur')->group(function () {
     Route::get('/product', function () {
         return view('main-entrepreneur.product');
     });
-     Route::get('/product/form', function () {
+    Route::get('/product/form', function () {
         return view('main-entrepreneur.product-form');
+    });
+
+    Route::get('/event', function () {
+        return view('main-entrepreneur.event');
+    });
+    Route::get('/event/form', function () {
+        return view('main-entrepreneur.event-form');
     });
 
     Route::get('/profile', function () {

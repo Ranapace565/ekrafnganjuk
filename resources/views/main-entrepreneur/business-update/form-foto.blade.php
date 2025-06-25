@@ -11,7 +11,7 @@
     </h2>
     <i class="dark:text-gray-100 text-sm">(<span class="text-red-600">*</span>)Wajib diisi</i>
 
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <div class="mt-10  gap-x-6 gap-y-8 ">
 
         <div class="col-span-full">
             <div class="mt-2 flex items-center gap-x-3 w-full justify-center flex-col">
@@ -45,7 +45,8 @@
                 ]">
                 </x-ui.popover>
             </label>
-            <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+            <div
+                class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 dark:border-gray-400 px-6 py-10">
                 <div class="text-center">
                     <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
                         aria-hidden="true" data-slot="icon">
