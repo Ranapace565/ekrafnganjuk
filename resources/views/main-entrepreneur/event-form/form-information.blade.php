@@ -57,7 +57,7 @@
     <div class="col-span-2">
         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
             Produk</label>
-        <x-forms.tinymce-editor />
+        <x-forms.public-tinymce-editor />
 
 
         {{-- <textarea id="description" rows="8"

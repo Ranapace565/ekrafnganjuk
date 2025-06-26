@@ -1,5 +1,5 @@
 <section class="bg-gray-50 dark:bg-gray-900 flex">
-    <div class="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
+    <div class="max-w-screen-xl px-4 mx-auto w-full">
         <!-- Start coding here -->
         <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">

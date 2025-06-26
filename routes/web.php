@@ -12,9 +12,6 @@ Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::post('/upload-image', [ImageUploadController::class, 'store']);
-
-
 Route::get('/registration', function () {
     return view('main-visitor.registration');
 });
@@ -78,6 +75,7 @@ Route::get('/keluar', function () {
 
 Route::prefix('entrepreneur')->group(function () {
     Route::get('/', function () {
+        session()->flash('error', 'Data berhasil disimpan.');
         return view('main-entrepreneur.index');
     });
 
@@ -99,7 +97,18 @@ Route::prefix('entrepreneur')->group(function () {
         return view('main-entrepreneur.event-form');
     });
 
+    Route::get('/inbox', function () {
+        return view('main-entrepreneur.inbox');
+    });
+
     Route::get('/profile', function () {
         return view('main-entrepreneur.profile');
+    });
+});
+
+Route::prefix('entrepreneur')->group(function () {
+    Route::get('/', function () {
+        session()->flash('error', 'Data berhasil disimpan.');
+        return view('main-admin.index');
     });
 });
