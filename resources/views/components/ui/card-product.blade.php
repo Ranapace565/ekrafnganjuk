@@ -61,7 +61,7 @@
 
 <div class="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
 
-    <div class="h-24 w-full ">
+    <div class="h-36 w-full ">
         <a href="{{ $detailUrl }}">
             <img class="rounded-t-lg w-full h-full object-cover" src="{{ $image }}" alt="Product Image" />
         </a>

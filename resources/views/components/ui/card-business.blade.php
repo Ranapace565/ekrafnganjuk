@@ -1,4 +1,14 @@
-<div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+@props([
+    'id' => uniqid(),
+    'size' => '',
+    'detailUrl' => '',
+    'editUrl' => '',
+    'deleteUrl' => '',
+])
+
+<div
+    class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+    <x-ui.button-menu />
     <div class="w-full">
         <a href="#">
             <img class="mx-auto h-32 w-32 rounded-full object-cover"
