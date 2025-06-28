@@ -41,8 +41,8 @@
         </div>
     </div>
 
-    <img src="{{ $image ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png' }}"
-        alt="{{ Str::limit($title, 20, '...') }}" class="w-20 h-20 object-contain">
+    <img src="{{ $image ?? 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png' }}"
+        alt="{{ Str::limit($title, 20, '...') }}" class="w-full h-48 object-cover">
 
     <div class="flex flex-col justify-between w-full">
         <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
