@@ -26,9 +26,9 @@
                 Ekonomi Kreatif yang akan berlangsung dan ada juga Artikel-artikel tentang Ekonomi Kreatfi yang akan
                 menambah wawasan kita mengenai Ekonmi Kreatif. Untuk itu daftarkan usaha Ekonomi Kreatifmu sekarang.
             </p>
-            <a href="#"
+            <a href="/registration"
                 class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-r-full rounded-l-full bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 ">
-                Daftarkan Usaha Kreatifmu
+                Daftarkan Kreatifitasmu
             </a>
         </div>
     </div>

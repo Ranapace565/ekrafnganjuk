@@ -77,6 +77,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
                     <div class="flex space-x-2">
@@ -107,17 +108,6 @@
                                     alt="">
                             </button>
                         </div>
-
-                        <!--
-                Dropdown menu, show/hide based on menu state.
-
-                Entering: "transition ease-out duration-100"
-                  From: "transform opacity-0 scale-95"
-                  To: "transform opacity-100 scale-100"
-                Leaving: "transition ease-in duration-75"
-                  From: "transform opacity-100 scale-100"
-                  To: "transform opacity-0 scale-95"
-              -->
                         <div x-show="isOpen" x-transition:enter="transition ease-out duration-100 transform"
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-75 transform"

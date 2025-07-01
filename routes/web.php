@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\upload\ImageUploadController;
+
+// login
+Route::get('/auth/redirect/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/callback/google', [GoogleController::class, 'handleGoogleCallback']);
 
 // file manager
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
