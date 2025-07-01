@@ -24,13 +24,21 @@ class GoogleController extends Controller
             'email' => $googleUser->getEmail(),
         ], [
             'name' => $googleUser->getName(),
-            'password' => bcrypt('google-oauth-password'), // Boleh random
+            'password' => bcrypt('google-oauth-password'),
             'role' => 'visitor_logged',
             'email_verified_at' => now(),
         ]);
 
         Auth::login($user);
 
-        return redirect('/beranda'); // Sesuaikan dengan kebutuhanmu
+        switch ($user->role) {
+            case 'admin':
+                return redirect('/admin/dashboard');
+            case 'entrepreneur':
+                return redirect('/entrepreneur/home');
+            case 'visitor_logged':
+            default:
+                return redirect('/beranda');
+        }
     }
 }

@@ -17,6 +17,10 @@ Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [GoogleController::class, 'index']);
+});
+
 Route::get('/registration', function () {
     return view('main-visitor.registration');
 });
