@@ -33,12 +33,23 @@ class GoogleController extends Controller
 
         switch ($user->role) {
             case 'admin':
-                return redirect('/admin/dashboard');
+                return redirect('/admin')->with(['success' => 'Anda telah berhasil masuk sebagai admin']);
             case 'entrepreneur':
-                return redirect('/entrepreneur/home');
+                return redirect('/entrepreneur')->with(['success' => 'Anda telah berhasil masuk sebagai pengusaha']);
             case 'visitor_logged':
+                return redirect('/beranda')->with(['success' => 'Anda telah berhasil masuk sebagai pengunjung terdaftar']);
             default:
                 return redirect('/beranda');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Logout dari sesi auth
+
+        $request->session()->invalidate(); // Invalidate session
+        $request->session()->regenerateToken(); // Regenerate CSRF token
+
+        return redirect('/beranda')->with(['success' => 'Anda telah berhasil keluar']); // Arahkan ke halaman utama atau login
     }
 }

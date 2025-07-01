@@ -5,8 +5,9 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\upload\ImageUploadController;
 
 // login
-Route::get('/auth/redirect/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/redirect/google', [GoogleController::class, 'redirectToGoogle'])->name('login');
 Route::get('/auth/callback/google', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/logout', [GoogleController::class, 'logout'])->name('logout');
 
 // file manager
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
