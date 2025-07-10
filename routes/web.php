@@ -1,8 +1,17 @@
 <?php
 
+use App\Models\District;
+// use App\Http\ControllersSubmissionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\upload\ImageUploadController;
+use App\Http\Controllers\sector\PublicSectorController;
+
+
+// test
+Route::post('/regis', [SubmissionController::class, 'store'])->name('test');
+
 
 // login
 Route::get('/auth/redirect/google', [GoogleController::class, 'redirectToGoogle'])->name('login');
@@ -22,9 +31,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [GoogleController::class, 'index']);
 });
 
+// rute registrasi
 Route::get('/registration', function () {
     return view('main-visitor.registration');
 });
+
+Route::post('/submission', [SubmissionController::class, 'store'])->name('business-submission');
+
+Route::middleware(['auth', 'role:visitor_logged'])->group(function () {});
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +97,10 @@ Route::get('/profil', function () {
 
 Route::get('/keluar', function () {
     return view('main-visitor.index');
+});
+
+Route::middleware(['auth', 'role:visitor_logged'])->group(function () {
+    Route::get('/admin/dashboard', [GoogleController::class, 'index']);
 });
 
 Route::prefix('entrepreneur')->group(function () {
@@ -175,4 +195,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/inbox', function () {
         return view('main-admin.inbox');
     });
+});
+
+
+Route::get('/get-villages/{district}', function (District $district) {
+    return response()->json($district->villages()->select('id', 'name')->get());
 });

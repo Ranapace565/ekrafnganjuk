@@ -6,7 +6,7 @@
                 alt="{{ $user->name }}">
         </div>
         <div class="ml-3">
-            <div class="text-base/5 font-medium text-white">{{ $user->name }}</div>
+            <div class="text-base/5 font-medium text-gray-800 dark:text-white">{{ $user->name }}</div>
             <div class="text-sm font-medium text-gray-400">{{ $user->email }}</div>
         </div>
 

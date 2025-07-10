@@ -3,17 +3,20 @@
 namespace App\View\Components\rolebar;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class admin extends Component
 {
     /**
      * Create a new component instance.
      */
+    public $user;
+
     public function __construct()
     {
-        //
+        $this->user = Auth::user(); // ambil user yang sedang login
     }
 
     /**
@@ -21,6 +24,8 @@ class admin extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.rolebar.admin');
+        return view('components.rolebar.admin', [
+            'user' => $this->user
+        ]);
     }
 }
