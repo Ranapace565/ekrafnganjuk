@@ -82,13 +82,13 @@
                 <div class="ml-4 flex items-center md:ml-6">
 
                     @guest
-                    <div class="flex items-center">
-                        <a href="{{ route('login') }}"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Mahok
-                        </a>
-                    </div>
-                @endguest
+                        <div class="flex items-center">
+                            <a href="{{ route('login') }}"
+                                class="text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Mahok
+                            </a>
+                        </div>
+                    @endguest
                     @auth
                         @if (Auth::user()->role === 'visitor_logged')
                             <x-roledown.visitor />
@@ -106,13 +106,13 @@
 
                 <div class="mr-2">
                     @guest
-                    <div class="flex items-center">
-                        <a href="{{ route('login') }}"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Mahok
-                        </a>
-                    </div>
-                @endguest
+                        <div class="flex items-center">
+                            <a href="{{ route('login') }}"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Mahok
+                            </a>
+                        </div>
+                    @endguest
                 </div>
 
                 {{-- button menu user lain --}}

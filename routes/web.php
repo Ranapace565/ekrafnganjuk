@@ -1,13 +1,18 @@
 <?php
 
 use App\Models\District;
+use App\Models\Submission;
 // use App\Http\ControllersSubmissionController;
+use App\Events\SubmissionCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\SubmissionNotificationToAdmin;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\upload\ImageUploadController;
 use App\Http\Controllers\sector\PublicSectorController;
-
+use App\Http\Controllers\Submission\VisitorSubmissionController;
+use Illuminate\Support\Env;
 
 // test
 Route::post('/regis', [SubmissionController::class, 'store'])->name('test');
@@ -32,13 +37,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 // rute registrasi
-Route::get('/registration', function () {
-    return view('main-visitor.registration');
-});
 
-Route::post('/submission', [SubmissionController::class, 'store'])->name('business-submission');
 
-Route::middleware(['auth', 'role:visitor_logged'])->group(function () {});
+
+
 
 
 
@@ -99,105 +101,136 @@ Route::get('/keluar', function () {
     return view('main-visitor.index');
 });
 
-Route::middleware(['auth', 'role:visitor_logged'])->group(function () {
-    Route::get('/admin/dashboard', [GoogleController::class, 'index']);
-});
 
-Route::prefix('entrepreneur')->group(function () {
-    Route::get('/', function () {
-        return view('main-entrepreneur.index');
-    });
+// Route::middleware(['auth', 'role:visitor_logged'])->group(function () {
+//     Route::get('/admin/dashboard', [GoogleController::class, 'index']);
+// });
 
-    Route::get('/business', function () {
-        return view('main-entrepreneur.business');
-    });
 
-    Route::get('/product', function () {
-        return view('main-entrepreneur.product');
-    });
-    Route::get('/product/form', function () {
-        return view('main-entrepreneur.product-form');
+Route::middleware(['auth', 'role:visitor_logged'])->prefix('visitor_logged')
+    ->name('visitor_logged.')->group(function () {
+        // Route::get('/registration', function () {
+        //     return view('main-visitor.registration');
+        // });
+        Route::get('/registration', [VisitorSubmissionController::class, 'create'])->name('registration');
+
+        Route::post('/submission', [VisitorSubmissionController::class, 'store'])->name('business-submission');
+
+        Route::get('/your-submission', [VisitorSubmissionController::class, 'show'])->name('visitor-submission');
     });
 
-    Route::get('/event', function () {
-        return view('main-entrepreneur.event');
-    });
-    Route::get('/event/form', function () {
-        return view('main-entrepreneur.event-form');
+Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
+    ->name('entrepreneur.')->group(function () {
+        Route::get('/', function () {
+            return view('main-entrepreneur.index');
+        });
+
+        Route::get('/business', function () {
+            return view('main-entrepreneur.business');
+        });
+
+        Route::get('/product', function () {
+            return view('main-entrepreneur.product');
+        });
+        Route::get('/product/form', function () {
+            return view('main-entrepreneur.product-form');
+        });
+
+        Route::get('/event', function () {
+            return view('main-entrepreneur.event');
+        });
+        Route::get('/event/form', function () {
+            return view('main-entrepreneur.event-form');
+        });
+
+        Route::get('/inbox', function () {
+            return view('main-entrepreneur.inbox');
+        });
+
+        Route::get('/profile', function () {
+            return view('main-entrepreneur.profile');
+        });
     });
 
-    Route::get('/inbox', function () {
-        return view('main-entrepreneur.inbox');
-    });
 
-    Route::get('/profile', function () {
-        return view('main-entrepreneur.profile');
-    });
-});
+Route::middleware(['auth', 'role:admin'])->prefix('admin')
+    ->name('admin.')->group(function () {
+        Route::get('/', function () {
+            return view('main-admin.index');
+        });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('main-admin.index');
-    });
+        Route::get('/business-submission', function () {
+            return view('main-admin.business-submission');
+        })->name('business.submission');
 
-    Route::get('/business-submission', function () {
-        return view('main-admin.business-submission');
-    });
+        Route::get('/business', function () {
+            return view('main-admin.business');
+        });
 
-    Route::get('/business', function () {
-        return view('main-admin.business');
-    });
+        Route::get('/business-report', function () {
+            return view('main-admin.business-report');
+        });
 
-    Route::get('/business-report', function () {
-        return view('main-admin.business-report');
-    });
+        Route::get('/business-nonaktif', function () {
+            return view('main-admin.business-nonaktif');
+        });
 
-    Route::get('/business-nonaktif', function () {
-        return view('main-admin.business-nonaktif');
-    });
+        Route::get('/sector/form', function () {
+            return view('main-admin.sector-form');
+        });
 
-    Route::get('/sector/form', function () {
-        return view('main-admin.sector-form');
-    });
+        Route::get('/sector', function () {
+            return view('main-admin.sector');
+        });
 
-    Route::get('/sector', function () {
-        return view('main-admin.sector');
-    });
+        Route::get('/event/form', function () {
+            return view('main-admin.event-form');
+        });
 
-    Route::get('/event/form', function () {
-        return view('main-admin.event-form');
-    });
+        Route::get('/event-self', function () {
+            return view('main-admin.event-self');
+        });
 
-    Route::get('/event-self', function () {
-        return view('main-admin.event-self');
-    });
+        Route::get('/event-submission', function () {
+            return view('main-admin.event-submission');
+        });
 
-    Route::get('/event-submission', function () {
-        return view('main-admin.event-submission');
-    });
+        Route::get('/event', function () {
+            return view('main-admin.event');
+        });
 
-    Route::get('/event', function () {
-        return view('main-admin.event');
-    });
+        Route::get('/article/form', function () {
+            return view('main-admin.article-form');
+        });
 
-    Route::get('/article/form', function () {
-        return view('main-admin.article-form');
-    });
+        Route::get('/article', function () {
+            return view('main-admin.article');
+        });
 
-    Route::get('/article', function () {
-        return view('main-admin.article');
-    });
+        Route::get('/product', function () {
+            return view('main-admin.product');
+        });
 
-    Route::get('/product', function () {
-        return view('main-admin.product');
+        Route::get('/inbox', function () {
+            return view('main-admin.inbox');
+        });
     });
-
-    Route::get('/inbox', function () {
-        return view('main-admin.inbox');
-    });
-});
 
 
 Route::get('/get-villages/{district}', function (District $district) {
     return response()->json($district->villages()->select('id', 'name')->get());
+});
+
+Route::get('/test-email', function () {
+    $submission = Submission::latest()->with('user')->first(); // Ambil submission terbaru
+
+    if (!$submission) {
+        return 'Tidak ada data submission.';
+    }
+
+    event(new SubmissionCreated($submission));
+
+    // Mail::to('nganjukekraf@gmail.com')->send(new SubmissionNotificationToAdmin($submission));
+
+    return 'Email notifikasi submission dikirim ke admin@example.com';
 });

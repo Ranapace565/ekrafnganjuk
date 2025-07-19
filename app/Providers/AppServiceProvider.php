@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\SubmissionRepository;
+use App\Repositories\Interfaces\SubmissionRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('files', function ($app) {
             return new Filesystem;
         });
+        $this->app->bind(SubmissionRepositoryInterface::class, SubmissionRepository::class);
     }
 
     /**

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('district_id')->constrained('districts')->onDelete('set null');
             $table->foreignId('village_id')->constrained('villages')->onDelete('set null');
             $table->string('name');
+            $table->string('contact');
             $table->string('category');
             $table->string('manager');
             $table->string('proof');

@@ -1,15 +1,25 @@
+@props(['data' => null])
+
+@php
+    $lat = $data['latitude'] ?? '';
+    $lng = $data['longitude'] ?? '';
+    $location = $data['location'] ?? '';
+@endphp
+
+
 <div id="map" style="height: 400px;" class=""></div>
 <div class="col-span-2">
     <input type="text" id="koordinat" name="coordinate"
         class="mt-4 md:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-        placeholder="-7.602379657652607, 111.90100602205803" value="" required readonly>
+        placeholder="-7.602379657652607, 111.90100602205803" value="{{ $lat && $lng ? "$lat, $lng" : '' }}" required
+        readonly>
 
-    <input type="hidden" id="latitude" name="latitude" value="" required>
-    <input type="hidden" id="longitude" name="longitude" value="" required>
+    <input type="hidden" id="latitude" name="latitude" value="{{ $lat }}" required>
+    <input type="hidden" id="longitude" name="longitude" value="{{ $lng }}" required>
 
     <input type="text" id="location-name" name="location"
         class="mt-4 md:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-        placeholder="Nganjuk, East Java, Java, 64414, Indonesia" value="" required>
+        placeholder="Nganjuk, East Java, Java, 64414, Indonesia" value="{{ $location }}" required>
 </div>
 
 {{-- <script>

@@ -20,13 +20,13 @@
             </div>
 
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 dark:text-gray-400">
-                EkrafKuy merupakan Platform Digital Ekonomi Kreatif Kabupaten Nganjuk yang dimana didalamnya terdapat
+                EkrafKuy merupakan Platform Digital Ekonomi Kreatif Kabupaten Nganjuk yang dimana didalamnya terdapatb
                 Daftar Ekonomi Kreatif berdasarkan Sub Sektor dan dibagi berdasarkan wilayah kecamatan yang ada di
                 Kabupaten Nganjuk. Selain Daftar usah di Nganjuk.Ekraf juga terdapat Informasi mengenai Event-event
                 Ekonomi Kreatif yang akan berlangsung dan ada juga Artikel-artikel tentang Ekonomi Kreatfi yang akan
                 menambah wawasan kita mengenai Ekonmi Kreatif. Untuk itu daftarkan usaha Ekonomi Kreatifmu sekarang.
             </p>
-            <a href="/registration"
+            <a href="{{ route('visitor_logged.registration') }}"
                 class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-r-full rounded-l-full bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 ">
                 Daftarkan Kreatifitasmu
             </a>

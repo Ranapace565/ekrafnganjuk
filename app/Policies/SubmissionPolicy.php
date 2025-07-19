@@ -11,9 +11,8 @@ class SubmissionPolicy
     public function create(User $user): bool
     {
         // Hanya boleh buat jika belum punya submission
-        return !Submission::where('user_id', $user->id)->exists();
+        return !Submission::where('user_id', $user->id)->exists() || in_array($user->role, ['admin', 'dev']);
     }
-
     public function view(User $user, Submission $submission): bool
     {
         return $user->id === $submission->user_id

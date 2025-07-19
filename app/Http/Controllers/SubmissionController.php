@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Submission;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Services\SubmissionService;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Http\Requests\Submission\StoreSubmissionRequest;
-use App\Http\Requests\Submission\UpdateSubmissionRequest;
-use App\Http\Requests\Submission\UpdateSubmissionStatusRequest;
 
 class SubmissionController extends Controller
 {
@@ -32,7 +28,36 @@ class SubmissionController extends Controller
 
             return redirect()->route('beranda')->with('success', 'Pengajuan berhasil disimpan!');
         } catch (AuthorizationException $e) {
-            return redirect()->route('beranda')->with('error', 'Anda sudah pernah mengajukan, buka halaman pengajuan untuk mengubah informasi pengajuan anda.');
+            return redirect()->route('registration')->with('error', 'Anda sudah pernah mengajukan, ubah informasi di halaman ini untuk mengubah informasi pengajuan anda.');
         }
     }
+
+    // public function showUserSubmission(SubmissionService $submissionService)
+    // {
+    //     try {
+    //         $this->authorize('view', Submission::class);
+
+    //         $submission = $submissionService->getByUser();
+
+    //         if ($submission) {
+    //             return response()->json([
+    //                 'success' => true,
+    //                 'message' => 'Anda sudah melakukan pengajuan sebelumnya.',
+    //                 'data' => $submission,
+    //             ]);
+    //         }
+
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Belum ada submission.',
+    //         ], 404);
+    //     } catch (\Exception $e) {
+    //         Log::error('Gagal mengambil submission: ' . $e->getMessage());
+
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Terjadi kesalahan server.',
+    //         ], 500);
+    //     }
+    // }
 }

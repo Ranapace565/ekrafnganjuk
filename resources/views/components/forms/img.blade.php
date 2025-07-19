@@ -1,8 +1,16 @@
+@props(['data' => null, 'name'])
+
+@php
+    $field = $name;
+    $imageUrl = $data && isset($data[$field]) ? asset('storage/' . $data[$field]) : '';
+@endphp
+
 <div class="grid md:grid-cols-2 grid-cols-1">
     {{-- Preview upload (md: di atas) --}}
     <div class="relative w-full">
-        <img id="preview-image" src="" alt="preview gambar"
-            class="w-full max-h-64 object-contain border rounded-lg hidden" />
+        <img id="preview-image" src="{{ $imageUrl }}" alt="preview gambar"
+            class="w-full max-h-64 object-contain border rounded-lg {{ $imageUrl ? '' : 'hidden' }}" />
+
     </div>
 
     {{-- File upload --}}

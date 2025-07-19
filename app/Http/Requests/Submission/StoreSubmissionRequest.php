@@ -19,6 +19,7 @@ class StoreSubmissionRequest extends FormRequest
             'district_id' => 'required|exists:districts,id',
             'village_id'  => 'required|exists:villages,id',
             'name'        => 'required|string|max:255',
+            'contact'     => 'required|string|max:14',
             'category'    => 'required|string|max:255',
             'manager'     => 'required|string|max:255',
             'proof'       => 'required|file|mimes:jpg,png,jpeg',
