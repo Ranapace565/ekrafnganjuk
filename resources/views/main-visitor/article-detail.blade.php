@@ -16,6 +16,4 @@
     <div class="lg:hidden">
         @include('main-visitor.article-detail.footer')
     </div>
-
-    <div class="">test</div>
 </x-layouts.visitor>

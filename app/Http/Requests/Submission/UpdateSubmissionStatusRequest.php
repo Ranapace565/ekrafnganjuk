@@ -14,8 +14,7 @@ class UpdateSubmissionStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => 'required|boolean',
-            'note'   => 'required_if:status,false|string',
+            'note'   => 'string',
         ];
     }
 }

@@ -3,7 +3,8 @@
 use App\Models\District;
 use App\Models\Submission;
 // use App\Http\ControllersSubmissionController;
-use App\Events\SubmissionCreated;
+use Illuminate\Support\Env;
+use App\Events\Submission\SubmissionCreated;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Mail\SubmissionNotificationToAdmin;
@@ -11,8 +12,8 @@ use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\upload\ImageUploadController;
 use App\Http\Controllers\sector\PublicSectorController;
+use App\Http\Controllers\Submission\AdminSubmissionController;
 use App\Http\Controllers\Submission\VisitorSubmissionController;
-use Illuminate\Support\Env;
 
 // test
 Route::post('/regis', [SubmissionController::class, 'store'])->name('test');
@@ -93,10 +94,6 @@ Route::get('/usaha', function () {
     return view('main-visitor.business-detail');
 });
 
-Route::get('/profil', function () {
-    return view('main-visitor.profile');
-});
-
 Route::get('/keluar', function () {
     return view('main-visitor.index');
 });
@@ -109,14 +106,17 @@ Route::get('/keluar', function () {
 
 Route::middleware(['auth', 'role:visitor_logged'])->prefix('visitor_logged')
     ->name('visitor_logged.')->group(function () {
-        // Route::get('/registration', function () {
-        //     return view('main-visitor.registration');
+        // Route::get('/profil', function () {
+        //     return view('main-visitor.profile');
         // });
+
         Route::get('/registration', [VisitorSubmissionController::class, 'create'])->name('registration');
 
         Route::post('/submission', [VisitorSubmissionController::class, 'store'])->name('business-submission');
 
-        Route::get('/your-submission', [VisitorSubmissionController::class, 'show'])->name('visitor-submission');
+        Route::put('/submission/{submission}', [VisitorSubmissionController::class, 'update'])->name('business-submission-update');
+
+        Route::get('/your-submission', [VisitorSubmissionController::class, 'show'])->name('submission');
     });
 
 Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
@@ -155,25 +155,39 @@ Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')
     ->name('admin.')->group(function () {
+
         Route::get('/', function () {
             return view('main-admin.index');
         });
 
-        Route::get('/business-submission', function () {
-            return view('main-admin.business-submission');
-        })->name('business.submission');
+        Route::prefix('business')->name('business.')->group(function () {
 
-        Route::get('/business', function () {
-            return view('main-admin.business');
+            Route::prefix('submission')->name('submission.')->group(function () {
+                Route::get('/', [AdminSubmissionController::class, 'index']);
+
+                Route::get('/detail/{id}', [AdminSubmissionController::class, 'show'])->name('detail');
+
+                Route::put('/reject/{submission}', [AdminSubmissionController::class, 'reject'])->name('reject');
+            });
+
+            Route::get('/', function () {
+                return view('main-admin.business');
+            });
+
+            Route::get('/report', function () {
+                return view('main-admin.business-report');
+            })->name('report');
+
+            Route::get('/nonaktif', function () {
+                return view('main-admin.business-nonaktif');
+            })->name('nonaktif');
         });
 
-        Route::get('/business-report', function () {
-            return view('main-admin.business-report');
-        });
+        // Route::get('/business-submission', function () {
+        //     return view('main-admin.business-submission');
+        // })->name('business.submission');
 
-        Route::get('/business-nonaktif', function () {
-            return view('main-admin.business-nonaktif');
-        });
+
 
         Route::get('/sector/form', function () {
             return view('main-admin.sector-form');

@@ -8,21 +8,24 @@ class UpdateSubmissionRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()->can('update', $this->route('submission'));
+        return $this->user()?->role === 'visitor_logged';
     }
 
     public function rules(): array
     {
         return [
-            'name'        => 'sometimes|string|max:255',
-            'category'    => 'sometimes|string|max:255',
-            'manager'     => 'sometimes|string|max:255',
-            'proof'       => 'sometimes|string',
-            'latitude'    => 'sometimes|string',
-            'longitude'   => 'sometimes|string',
-            'location'    => 'sometimes|string',
-            'description' => 'sometimes|string',
-            'sector_id'   => 'sometimes|exists:sectors,id',
+            'sector_id'   => 'required|exists:sectors,id',
+            'district_id' => 'required|exists:districts,id',
+            'village_id'  => 'required|exists:villages,id',
+            'name'        => 'required|string|max:255',
+            'contact'     => 'required|string|max:14',
+            'category'    => 'required|string|max:255',
+            'manager'     => 'required|string|max:255',
+            'proof'       => 'nullable|file|mimes:jpg,png,jpeg',
+            'latitude'    => 'required|string',
+            'longitude'   => 'required|string',
+            'location'    => 'required|string',
+            'description' => 'required|string',
         ];
     }
 }

@@ -22,6 +22,8 @@
         </button>
     </div>
     <div class="mt-3 space-y-1 px-2">
+        <a href="{{ route('visitor_logged.registration') }}"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Pengajuanmu</a>
         <a href="/profil"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Profil</a>
         {{-- <a href="#"

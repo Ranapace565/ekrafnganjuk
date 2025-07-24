@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Filesystem\Filesystem;
+use App\Repositories\SectorRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\DistrictRepository;
 use App\Repositories\SubmissionRepository;
+use App\Repositories\Interfaces\SectorRepositoryInterface;
+use App\Repositories\Interfaces\DistrictRepositoryInterface;
 use App\Repositories\Interfaces\SubmissionRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
             return new Filesystem;
         });
         $this->app->bind(SubmissionRepositoryInterface::class, SubmissionRepository::class);
+        $this->app->bind(SectorRepositoryInterface::class, SectorRepository::class);
+        $this->app->bind(DistrictRepositoryInterface::class, DistrictRepository::class);
     }
 
     /**

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SubmissionNotificationToAdmin;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Http\Requests\Submission\StoreSubmissionRequest;
+use App\Http\Requests\Submission\UpdateSubmissionRequest;
 
 class VisitorSubmissionController extends Controller
 {
@@ -32,7 +33,7 @@ class VisitorSubmissionController extends Controller
     {
         try {
             if ($submissionService->userAlreadySubmitted()) {
-                return redirect('/beranda')->with(['success' => 'Anda sudah melakukan pengajuan sebelumnya, ubah untuk mengajukan ulang']);
+                return redirect()->route('visitor_logged.submission')->with(['success' => 'Anda sudah melakukan pengajuan sebelumnya, ubah untuk mengajukan ulang']);
             }
             return view('main-visitor.registration');
         } catch (\Exception $e) {
@@ -56,7 +57,23 @@ class VisitorSubmissionController extends Controller
 
             return redirect()->route('beranda')->with('success', 'Pengajuan berhasil disimpan!');
         } catch (AuthorizationException $e) {
-            return redirect()->route('visitor-submission')->with('error', 'Anda sudah pernah mengajukan, ubah informasi di halaman ini untuk mengubah informasi pengajuan anda.');
+            return redirect()->route('visitor-submission')->with('error', $e);
+        }
+    }
+
+    public function update(UpdateSubmissionRequest $request, SubmissionService $submissionService, Submission $submission)
+    {
+        try {
+            $this->authorize('update', $submission);
+
+            $validated = $request->validated();
+            $file = $request->file('proof');
+
+            $submissionService->update($submission, $validated, $file);
+
+            return redirect()->route('beranda')->with('success', 'Pengajuan berhasil diperbarui!');
+        } catch (AuthorizationException $e) {
+            return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
         }
     }
 }

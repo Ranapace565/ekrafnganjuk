@@ -21,12 +21,12 @@ class SubmissionPolicy
 
     public function update(User $user, Submission $submission): bool
     {
-        return $user->id === $submission->user_id;
+        return $user->id === $submission->user_id || in_array($user->role, ['admin', 'dev']);
     }
 
     public function updateStatus(User $user, Submission $submission): bool
     {
-        return $user->role === in_array($user->role, ['admin', 'dev']);
+        return in_array($user->role, ['admin', 'dev']);
     }
 
     public function delete(User $user, Submission $submission): bool

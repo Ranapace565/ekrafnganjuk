@@ -8,7 +8,6 @@ class StoreSubmissionRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        // dd('role');
         return $this->user()?->role === 'visitor_logged';
     }
 

@@ -29,7 +29,7 @@
                 <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF (Maks. 10MB)</p>
             </div>
             <input id="file-upload" name="{{ $name }}" type="file"
-                accept="image/png, image/jpeg, image/jpg, image/gif" class="hidden" onchange="previewFile()" required />
+                accept="image/png, image/jpeg, image/jpg, image/gif" class="hidden" onchange="previewFile()" />
         </label>
     </div>
 </div>

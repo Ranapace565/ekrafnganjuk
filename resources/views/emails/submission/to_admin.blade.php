@@ -12,7 +12,7 @@
         {{ asset('storage/' . $submission->proof) }}
     @endif
 
-    @component('mail::button', ['url' => route('admin.business.submission', $submission->id), 'color' => 'blue'])
+    @component('mail::button', ['url' => route('admin.business.submission.', $submission->id), 'color' => 'blue'])
         🔍 Lihat Detail Pengajuan
     @endcomponent
 

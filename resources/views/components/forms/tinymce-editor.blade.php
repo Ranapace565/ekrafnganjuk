@@ -1,5 +1,7 @@
+@props(['data' => null, 'name' => null])
+
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
-<textarea id="myeditorinstance">Hello, World!</textarea>
+<textarea id="myeditorinstance" name="{{ $name }}">{{ $data }}</textarea>
 <script>
     tinymce.init({
         selector: 'textarea#myeditorinstance',

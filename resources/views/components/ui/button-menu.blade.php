@@ -19,18 +19,24 @@
     <div id="dropdown-{{ md5($id) }}"
         class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg w-44 dark:bg-gray-800 shadow-lg">
         <ul class="py-2" aria-labelledby="dropdownButton-{{ md5($id) }}">
-            <li>
-                <a href="{{ $detailUrl }}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>
-            </li>
-            <li>
-                <a href="{{ $editUrl }}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ubah</a>
-            </li>
-            <li>
-                <a href="{{ $deleteUrl }}"
-                    class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
-            </li>
+            @if ($detailUrl != null)
+                <li>
+                    <a href="{{ $detailUrl }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>
+                </li>
+            @endif
+            @if ($editUrl != null)
+                <li>
+                    <a href="{{ $editUrl }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ubah</a>
+                </li>
+            @endif
+            @if ($deleteUrl != null)
+                <li>
+                    <a href="{{ $deleteUrl }}"
+                        class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

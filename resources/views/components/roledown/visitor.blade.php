@@ -18,6 +18,9 @@
         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
         <!-- Active: "bg-gray-100 outline-none", Not Active: "" -->
 
+        <a href="{{ route('visitor_logged.registration') }}"
+            class="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white" role="menuitem"
+            tabindex="-1" id="user-menu-item-0">Pengajuanmu</a>
         <a href="/profil" class="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
             role="menuitem" tabindex="-1" id="user-menu-item-0">Profil</a>
         {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"

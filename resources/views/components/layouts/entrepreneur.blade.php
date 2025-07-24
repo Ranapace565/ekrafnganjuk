@@ -3,12 +3,12 @@
 
 <x-head></x-head>
 
-<body class="h-full">
-    <div class="min-h-full">
+<body class="scrollbar-custom h-full">
+    <div class="scrollbar-custom min-h-full">
         <x-sidebar.entrepreneur />
 
-        <main class="lg:ml-64 mt-14 bg-white dark:bg-gray-900">
-            <div class="mx-auto">
+        <main class="scrollbar-custom lg:ml-64 mt-14 bg-white dark:bg-gray-900">
+            <div class="scrollbar-custom mx-auto">
 
                 <x-ui.alert></x-ui.alert>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Submission;
 
 use App\Models\Sector;
 use App\Models\Submission;

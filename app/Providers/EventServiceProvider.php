@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
-use App\Events\SubmissionCreated;
+use App\Events\Submission\SubmissionCreated;
+use App\Events\Submission\SubmissionReject;
+use App\Listeners\Submission\NotifyVisitorOnSubmission;
+use App\Listeners\Submission\NotifyVisitorOnSubmissionReject;
 use Illuminate\Support\ServiceProvider;
 use App\Listeners\Submission\NotifyAdminOnSubmission;
 
@@ -16,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         SubmissionCreated::class => [
             NotifyAdminOnSubmission::class,
+        ],
+        SubmissionReject::class => [
+            NotifyVisitorOnSubmissionReject::class,
         ],
     ];
 }

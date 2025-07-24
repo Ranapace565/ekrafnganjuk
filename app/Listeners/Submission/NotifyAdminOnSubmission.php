@@ -2,11 +2,11 @@
 
 namespace App\Listeners\Submission;
 
-use App\Events\SubmissionCreated;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SubmissionNotificationToAdmin;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Events\Submission\SubmissionCreated;
+use App\Mail\Submission\SubmissionNotificationToAdmin;
 
 class NotifyAdminOnSubmission
 {

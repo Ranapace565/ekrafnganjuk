@@ -3,12 +3,12 @@
 
 <x-head></x-head>
 
-<body class="h-full">
-    <div class="min-h-full">
+<body class=" scrollbar-custom h-full">
+    <div class=" scrollbar-custom min-h-full">
 
         <x-navbar.visitor />
-        <main class="pt-10 bg-white dark:bg-gray-900">
-            <div class="mx-auto pt-6">
+        <main class=" scrollbar-custom pt-10 bg-white dark:bg-gray-900">
+            <div class=" scrollbar-custom mx-auto pt-6">
 
                 <x-ui.alert></x-ui.alert>
 

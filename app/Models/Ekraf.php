@@ -35,4 +35,21 @@ class Ekraf extends Model
             $ekraf->slug = $slug;
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
 }
