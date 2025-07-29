@@ -8,6 +8,10 @@ use Illuminate\Auth\Access\Response;
 
 class SubmissionPolicy
 {
+    public function approve(User $user)
+    {
+        return in_array($user->role, ['admin', 'dev']);
+    }
     public function create(User $user): bool
     {
         // Hanya boleh buat jika belum punya submission

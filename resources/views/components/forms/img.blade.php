@@ -5,7 +5,7 @@
     $imageUrl = $data && isset($data[$field]) ? asset('storage/' . $data[$field]) : '';
 @endphp
 
-<div class="grid md:grid-cols-2 grid-cols-1">
+<div class="grid grid-cols-1">
     {{-- Preview upload (md: di atas) --}}
     <div class="relative w-full">
         <img id="preview-image" src="{{ $imageUrl }}" alt="preview gambar"

@@ -2,21 +2,33 @@
 // app/Services/SubmissionService.php
 namespace App\Services;
 
+use App\Models\Ekraf;
 use App\Models\Submission;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use Illuminate\Support\Str;
-use App\Events\Submission\SubmissionCreated;
-use App\Events\Submission\SubmissionReject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Events\Submission\SubmissionReject;
+use App\Events\Submission\SubmissionApprove;
+use App\Events\Submission\SubmissionCreated;
+use App\Repositories\Interfaces\EkrafRepositoryInterface;
 use App\Repositories\Interfaces\SubmissionRepositoryInterface;
 
 class SubmissionService
 {
-    protected SubmissionRepositoryInterface $submissionRepository;
+    protected $submissionRepository;
 
-    public function __construct(SubmissionRepositoryInterface $submissionRepository)
+    protected $ekrafRepository;
+
+    protected $userRepository;
+
+    public function __construct(SubmissionRepositoryInterface $submissionRepository, EkrafRepositoryInterface $ekrafRepository, UserRepositoryInterface $userRepository)
     {
         $this->submissionRepository = $submissionRepository;
+
+        $this->ekrafRepository = $ekrafRepository;
+
+        $this->userRepository = $userRepository;
     }
 
     public function index(?string $search = null, ?int $sector = null, ?int $district = null)
@@ -66,9 +78,7 @@ class SubmissionService
             );
 
             // Hapus file lama jika perlu
-            if ($submission->proof && Storage::disk('public')->exists($submission->proof)) {
-                Storage::disk('public')->delete($submission->proof);
-            }
+            $this->deleteProofFile($submission);
 
             $validated['proof'] = $proofPath;
         }
@@ -94,6 +104,24 @@ class SubmissionService
         return $submission;
     }
 
+    public function approve(Submission $submission, Ekraf $ekraf)
+    {
+
+        $ekraf = $this->ekrafRepository->createFromSubmission($submission);
+
+        $user = $submission->user()->first();
+        $this->userRepository->update($user, ['role' => 'entrepreneur']);
+
+
+        event(new SubmissionApprove($submission));
+
+        $this->deleteProofFile($submission);
+
+        $submission = $this->submissionRepository->destroy($submission);
+
+        return $ekraf;
+    }
+
 
     public function userAlreadySubmitted(): bool
     {
@@ -108,5 +136,12 @@ class SubmissionService
     public function getById($id)
     {
         return $this->submissionRepository->findById($id);
+    }
+
+    protected function deleteProofFile(Submission $submission)
+    {
+        if ($submission->proof && Storage::disk('public')->exists($submission->proof)) {
+            Storage::disk('public')->delete($submission->proof);
+        }
     }
 }

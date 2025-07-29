@@ -16,7 +16,7 @@ use App\Http\Controllers\Submission\AdminSubmissionController;
 use App\Http\Controllers\Submission\VisitorSubmissionController;
 
 // test
-Route::post('/regis', [SubmissionController::class, 'store'])->name('test');
+// Route::post(uri: '/regis', [SubmissionController::class, 'store'])->name('test');
 
 
 // login
@@ -168,6 +168,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')
                 Route::get('/detail/{id}', [AdminSubmissionController::class, 'show'])->name('detail');
 
                 Route::put('/reject/{submission}', [AdminSubmissionController::class, 'reject'])->name('reject');
+
+                Route::post('/approve/{submission}', [AdminSubmissionController::class, 'approve'])->name('approve');
             });
 
             Route::get('/', function () {

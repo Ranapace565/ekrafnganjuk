@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Http\Requests\Submission\UpdateSubmissionStatusRequest;
+use App\Models\Ekraf;
 
 class AdminSubmissionController extends Controller
 {
@@ -60,13 +61,28 @@ class AdminSubmissionController extends Controller
     {
         try {
 
-            // dd('');
             $this->authorize('updateStatus', $submission);
             $validated = $request->validated();
 
             $submissionService->reject($submission, $validated);
 
             return redirect()->route('admin.business.submission.')->with('success', 'Pengajuan berhasil ditolak!');
+        } catch (AuthorizationException $e) {
+            return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
+        }
+    }
+
+    public function approve(SubmissionService $submissionService, Submission $submission, Ekraf $ekraf)
+    {
+        try {
+
+            $this->authorize('approve', $submission);
+
+            // $validated = $request->validated();
+
+            $submissionService->approve($submission, $ekraf);
+
+            return redirect()->route('admin.business.submission.')->with('success', 'Pengajuan berhasil diterima, dan menjadi usaha terdaftar!');
         } catch (AuthorizationException $e) {
             return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
         }

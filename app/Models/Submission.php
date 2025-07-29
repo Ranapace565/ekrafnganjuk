@@ -19,6 +19,7 @@ class Submission extends Model
         'contact',
         'category',
         'manager',
+
         'proof',
         'latitude',
         'longitude',

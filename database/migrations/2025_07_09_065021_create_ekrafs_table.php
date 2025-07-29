@@ -19,9 +19,11 @@ return new class extends Migration
             $table->foreignId('village_id')->constrained('villages')->onDelete('set null');
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('contact');
             $table->string('category');
             $table->string('manager');
             $table->string('logo')->nullable();
+            $table->string('cover')->nullable();
             $table->string('latitude');
             $table->string('longitude');
             $table->string('location');

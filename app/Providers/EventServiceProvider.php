@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\Submission\SubmissionCreated;
+use Illuminate\Support\ServiceProvider;
 use App\Events\Submission\SubmissionReject;
+use App\Events\Submission\SubmissionApprove;
+use App\Events\Submission\SubmissionCreated;
+use App\Listeners\Submission\NotifyAdminOnSubmission;
 use App\Listeners\Submission\NotifyVisitorOnSubmission;
 use App\Listeners\Submission\NotifyVisitorOnSubmissionReject;
-use Illuminate\Support\ServiceProvider;
-use App\Listeners\Submission\NotifyAdminOnSubmission;
+use App\Listeners\Submission\NotifyVisitorOnSubmissionApprove;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         SubmissionReject::class => [
             NotifyVisitorOnSubmissionReject::class,
+        ],
+        SubmissionApprove::class => [
+            NotifyVisitorOnSubmissionApprove::class,
         ],
     ];
 }

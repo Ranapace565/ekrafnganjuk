@@ -14,4 +14,9 @@ class Sector extends Model
     {
         return $this->hasMany(Submission::class);
     }
+
+    public function ekrafs()
+    {
+        return $this->hasMany(Ekraf::class);
+    }
 }

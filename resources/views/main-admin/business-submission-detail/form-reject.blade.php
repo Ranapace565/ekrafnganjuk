@@ -28,9 +28,22 @@
             class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 hover:bg-red-800">
             Tolak Pengajuan
         </button>
-        <a type=""
+        {{-- <a type=""
             class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-800">
             Terima Pengajuan
-        </a>
+        </a> --}}
+    </div>
+</form>
+<form action="{{ route('admin.business.submission.approve', $data->id) }}" method="POST" enctype="multipart/form-data"
+    class="col-span-2">
+
+    @csrf
+
+    <div class="w-full flex justify-end">
+        <button type="submit"
+            class="inline-flex items-center py-2.5 px-5 text-sm font-medium text-center text-white bg-green-700 rounded-lg focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 hover:bg-green-800">
+            Terima Pengajuan
+        </button>
+
     </div>
 </form>

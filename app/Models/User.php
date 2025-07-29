@@ -27,4 +27,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function submission()
+    {
+        return $this->belongsTo(Submission::class);
+    }
+    public function ekraf()
+    {
+        return $this->belongsTo(Ekraf::class);
+    }
 }

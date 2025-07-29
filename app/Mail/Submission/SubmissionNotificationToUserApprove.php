@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SubmissionNotificationToUserReject extends Mailable
+class SubmissionNotificationToUserApprove extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,7 @@ class SubmissionNotificationToUserReject extends Mailable
 
         $name = $this->submission->name;
 
-        return $this->subject('Pengajuan Usahamu ' . $name . 'Ditolak oleh Admin')
-            ->markdown('emails.submission.to_user_reject');
+        return $this->subject('Pengajuan Usahamu ' . $name . 'Diterima oleh Admin')
+            ->markdown('emails.submission.to_user_approve');
     }
 }

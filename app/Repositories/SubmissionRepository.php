@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Ekraf;
 use App\Models\Submission;
 use App\Repositories\Interfaces\SubmissionRepositoryInterface;
 
@@ -36,9 +37,11 @@ class SubmissionRepository implements SubmissionRepositoryInterface
         return $submission;
     }
 
-    // public function reject(Submission $submission, array $data){
-    //     $submission->update($data);
-    // }
+    public function reject(Submission $submission, array $data): Submission
+    {
+        $submission->update($data);
+        return $submission;
+    }
 
     public function findByUserId($userId)
     {
@@ -53,5 +56,10 @@ class SubmissionRepository implements SubmissionRepositoryInterface
     public function existsForUser(int $userId): bool
     {
         return Submission::where('user_id', $userId)->exists();
+    }
+
+    public function destroy(Submission $submission): bool
+    {
+        return $submission->delete();
     }
 }

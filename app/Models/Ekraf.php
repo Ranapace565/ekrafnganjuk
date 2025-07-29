@@ -7,6 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ekraf extends Model
 {
+
+    protected $fillable = [
+        'user_id',
+        'sector_id',
+        'district_id',
+        'village_id',
+        'name',
+        'slug',
+        'contact',
+        'category',
+        'manager',
+        'logo',
+        'cover',
+        'latitude',
+        'longitude',
+        'location',
+        'description',
+        'status',
+        'active',
+        'note',
+        'male',
+        'female'
+    ];
     protected static function booted()
     {
         static::creating(function ($ekraf) {
