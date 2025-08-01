@@ -8,13 +8,14 @@ class UpdateEkrafRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()?->role === 'admin' || 'dev';
+        return in_array($this->user()?->role, ['entrepreneur', 'admin', 'dev']);
     }
+
 
     public function rules(): array
     {
         return [
-            'user_id'      => ['required', 'exists:users,id'],
+            // 'user_id'      => ['required', 'exists:users,id'],
             'sector_id'    => ['required', 'exists:sectors,id'],
             'district_id'  => ['required', 'exists:districts,id'],
             'village_id'   => ['required', 'exists:villages,id'],
@@ -30,7 +31,7 @@ class UpdateEkrafRequest extends FormRequest
             'location'     => ['required', 'string', 'max:255'],
             'description'  => ['nullable', 'string', 'max:1000'],
 
-            'status'       => ['nullable', 'integer', 'in:0,1,2'],
+            // 'status'       => ['nullable', 'integer', 'in:0,1,2'],
             'active'       => ['nullable', 'boolean'],
 
             'note'         => ['nullable', 'string', 'max:1000'],

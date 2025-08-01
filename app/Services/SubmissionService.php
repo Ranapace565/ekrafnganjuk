@@ -89,7 +89,6 @@ class SubmissionService
             event(new SubmissionCreated($submission));
         }
 
-
         return $submission;
     }
 
@@ -112,7 +111,6 @@ class SubmissionService
         $user = $submission->user()->first();
         $this->userRepository->update($user, ['role' => 'entrepreneur']);
 
-
         event(new SubmissionApprove($submission));
 
         $this->deleteProofFile($submission);
@@ -121,7 +119,6 @@ class SubmissionService
 
         return $ekraf;
     }
-
 
     public function userAlreadySubmitted(): bool
     {

@@ -2,31 +2,48 @@
 
 namespace App\Services;
 
-use App\Models\Ekraf;
-use App\Repositories\EkrafRepository;
-use Illuminate\Support\Str;
+use App\Events\Ekraf\EkrafUpdate;
+use App\Models\Ekraf; // ✅ penting!
+use Illuminate\Support\Facades\Storage;
+use App\Repositories\Interfaces\EkrafRepositoryInterface;
 
 class EkrafService
 {
-    protected $repository;
+    protected $ekrafRepository;
 
-    public function __construct(EkrafRepository $repository)
+    public function __construct(EkrafRepositoryInterface $ekrafRepository)
     {
-        $this->repository = $repository;
+        $this->ekrafRepository = $ekrafRepository;
     }
 
-    public function createEkraf(array $data): Ekraf
+    public function getByUser($userId)
     {
-        return $this->repository->create($data);
+        return $this->ekrafRepository->findByUserId($userId);
     }
 
     public function update(Ekraf $ekraf, array $data): Ekraf
     {
-        return $this->repository->update($ekraf, $data);
-    }
+        $wasRejected = $ekraf->status === 0;
 
-    public function deleteEkraf(Ekraf $ekraf): bool
-    {
-        return $this->repository->delete($ekraf);
+        if (isset($data['remove_logo']) && $data['remove_logo'] == '1') {
+            if ($ekraf->logo && Storage::disk('public')->exists($ekraf->logo)) {
+                Storage::disk('public')->delete($ekraf->logo);
+            }
+            $data['logo'] = null;
+        }
+
+        if (isset($data['remove_cover']) && $data['remove_cover'] == '1') {
+            if ($ekraf->cover && Storage::disk('public')->exists($ekraf->cover)) {
+                Storage::disk('public')->delete($ekraf->cover);
+            }
+            $data['cover'] = null;
+        }
+
+        if ($wasRejected) {
+            $data['status'] = 1;
+            event(new EkrafUpdate($ekraf));
+        }
+
+        return $this->ekrafRepository->update($ekraf, $data);
     }
 }

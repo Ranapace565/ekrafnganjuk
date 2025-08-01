@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ekraf extends Model
 {
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -47,15 +50,17 @@ class Ekraf extends Model
         });
 
         static::updating(function ($ekraf) {
-            $baseSlug = Str::slug($ekraf->name);
-            $slug = $baseSlug;
-            $count = 1;
+            if ($ekraf->isDirty('name')) {
+                $baseSlug = Str::slug($ekraf->name);
+                $slug = $baseSlug;
+                $count = 1;
 
-            while (Ekraf::where('slug', $slug)->exists()) {
-                $slug = $baseSlug . '-' . $count++;
+                while (Ekraf::where('slug', $slug)->where('id', '!=', $ekraf->id)->exists()) {
+                    $slug = $baseSlug . '-' . $count++;
+                }
+
+                $ekraf->slug = $slug;
             }
-
-            $ekraf->slug = $slug;
         });
     }
 

@@ -4,18 +4,18 @@
 
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class=" col-span-2">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
-                Usaha <span class="text-red-600">*</span></label>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama<span
+                    class="text-red-600">*</span></label>
             <input type="text" name="name" id="name"
                 class="md:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Web Development & Agriculture" required>
+                placeholder="Web Development & Agriculture" required value="{{ $data['name'] }}">
         </div>
         <div class="w-full">
             <label for="manager" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                 Pengelola <span class="text-red-600">*</span></label>
             <input type="text" name="manager" id="manager"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Rana Bagaskara" required>
+                placeholder="Rana Bagaskara" required value="{{ $data['manager'] }}">
         </div>
 
         <div class="w-full">
@@ -23,18 +23,18 @@
                 <span class="text-red-600">*</span></label>
             <input type="number" name="contact" id="contact"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="088899997777" required>
+                placeholder="088899997777" required value="{{ $data['contact'] }}">
         </div>
         <div class="w-full">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
-            <x-forms.category required />
+            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+            <x-forms.category required value="{{ $data['category'] }}" />
         </div>
         <div class="w-full">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub
+            <label for="sector" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub
                 Sektor<span class="text-red-600">*</span></label></label>
-            <x-forms.sector-f required />
+            <x-forms.sector-f required :data="$data['sector_id']" />
         </div>
-        <x-forms.district-f />
+        <x-forms.district-f :data="$data" />
         <div class="col-span-2">
             <label for="cover-photo" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi
                 Usaha <span class="text-red-600">*</span> <x-ui.popover id="lokasi-usaha" :messages="[
@@ -46,18 +46,31 @@
                 ]">
                 </x-ui.popover>
             </label>
-            <x-forms.maps />
+            <x-forms.maps :data="$data" />
 
         </div>
 
         <div class="col-span-2">
-            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
-                Usaha</label>
+            <label for="description" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
+                Usaha
+                <x-ui.popover id="deskripsi-usaha" :messages="[
+                    [
+                        'title' => 'deskripsi Usaha',
+                        'desc' => 'Lengkapi deskripsi usaha anda untuk informasi lebih detail tentang usahamu.',
+                    ],
+                    [
+                        'title' => 'Gambar dalam deskripsi',
+                        'desc' =>
+                            'Gambar yang kamu upload di file manager Ekraf dapat dilihat dan digunakan oleh pengguna lain',
+                    ],
+                ]">
+                </x-ui.popover>
+            </label>
 
-            <x-forms.public-tinymce-editor name="description" />
+            <x-forms.public-tinymce-editor name="description" :data="$data['description']" />
         </div>
         <div class="md:col-span-1 col-span-2">
-            <label for="name" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white flex">
+            <label for="male" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white flex">
                 Jumlah Tenaga Kerja
                 <x-ui.popover id="tenaga-kerja" :messages="[
                     [
@@ -70,9 +83,9 @@
             </label>
             <div class="flex space-x-2">
 
-                <x-forms.integer-f name="male" :tite="'Laki-laki'" />
+                <x-forms.integer-f name="male" :tite="'Laki-laki'" :data="$data['male']" />
 
-                <x-forms.integer-f name="female" :tite="'Perempuan'" />
+                <x-forms.integer-f name="female" :tite="'Perempuan'" :data="$data['female']" />
             </div>
         </div>
 

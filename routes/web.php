@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ekraf\EntrepreneurEkrafController;
 use App\Models\District;
 use App\Models\Submission;
 // use App\Http\ControllersSubmissionController;
@@ -125,9 +126,13 @@ Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
             return view('main-entrepreneur.index');
         });
 
-        Route::get('/business', function () {
-            return view('main-entrepreneur.business');
+        Route::prefix('business')->name('business.')->group(function () {
+
+            Route::get('/', [EntrepreneurEkrafController::class, 'show'])->name('detail');
+
+            Route::put('/update/{ekraf}', [EntrepreneurEkrafController::class, 'update'])->name('update');
         });
+
 
         Route::get('/product', function () {
             return view('main-entrepreneur.product');

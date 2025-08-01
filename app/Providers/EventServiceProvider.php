@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\Ekraf\EkrafUpdate;
 use Illuminate\Support\ServiceProvider;
 use App\Events\Submission\SubmissionReject;
 use App\Events\Submission\SubmissionApprove;
 use App\Events\Submission\SubmissionCreated;
+use App\Listeners\Ekraf\NotifyAdminOnEkrafUpdate;
 use App\Listeners\Submission\NotifyAdminOnSubmission;
 use App\Listeners\Submission\NotifyVisitorOnSubmission;
 use App\Listeners\Submission\NotifyVisitorOnSubmissionReject;
@@ -28,5 +30,8 @@ class EventServiceProvider extends ServiceProvider
         SubmissionApprove::class => [
             NotifyVisitorOnSubmissionApprove::class,
         ],
+        EkrafUpdate::class => [
+            NotifyAdminOnEkrafUpdate::class,
+        ]
     ];
 }
