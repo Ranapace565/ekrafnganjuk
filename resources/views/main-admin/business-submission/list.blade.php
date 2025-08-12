@@ -5,11 +5,10 @@
             @if ($submissions != null)
                 @foreach ($submissions as $submission)
                     <x-ui.card-business :title="$submission->name" :location="$submission->location" :image="asset('storage/' . $submission->proof)" :sector_id="$submission->sector->name"
-                        :manager="$submission->manager" :contact="$submission->contact" :status="$submission->status" :detailUrl="route('admin.business.submission.detail',[$submission->id])" />
+                        :manager="$submission->manager" :contact="$submission->contact" :status="$submission->status" :detailUrl="route('admin.ekraf.submission.detail',[$submission->id])" />
                 @endforeach
             @endif
         </div>
         <x-ui.pagination :paginator="$submissions" />
     </div>
-
 </section>

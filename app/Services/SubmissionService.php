@@ -77,7 +77,6 @@ class SubmissionService
                 'public'
             );
 
-            // Hapus file lama jika perlu
             $this->deleteProofFile($submission);
 
             $validated['proof'] = $proofPath;

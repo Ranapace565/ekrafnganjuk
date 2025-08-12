@@ -11,25 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ekrafs', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('sector_id')->constrained('sectors')->onDelete('set null');
-            $table->foreignId('district_id')->constrained('districts')->onDelete('set null');
-            $table->foreignId('village_id')->constrained('villages')->onDelete('set null');
-            $table->string('name');
+            $table->string('title');
             $table->string('slug')->unique();
-            $table->string('contact');
-            $table->string('category');
-            $table->string('manager');
-            $table->string('logo')->nullable();
-            $table->string('cover')->nullable();
+            $table->string('poster');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('location');
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->integer('status')->default(1);
-            $table->boolean('active')->default(true);
             $table->string('note')->nullable();
             $table->timestamps();
         });
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ekrafs');
+        Schema::dropIfExists('events');
     }
 };

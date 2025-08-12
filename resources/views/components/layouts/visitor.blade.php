@@ -13,6 +13,7 @@
                 <x-ui.alert></x-ui.alert>
 
                 {{ $slot }}
+
             </div>
         </main>
 

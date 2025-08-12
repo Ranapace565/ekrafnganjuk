@@ -6,7 +6,11 @@
             <x-ui.popover id="daftar-produk" :messages="[['title' => 'Daftar Produk', 'desc' => 'Produkmu akan ditampilkan di halaman utama usahamu.']]">
             </x-ui.popover>
         </h2>
-        @include('main-entrepreneur.product-form.form-foto')
-        @include('main-entrepreneur.product-form.form-information')
+        <form method="POST" action="{{ route('entrepreneur.product.store') }}" enctype="multipart/form-data">
+            @csrf
+
+            @include('main-entrepreneur.product-form.form-foto')
+            @include('main-entrepreneur.product-form.form-information')
+        </form>
     </div>
 </x-layouts.entrepreneur>

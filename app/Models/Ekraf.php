@@ -80,4 +80,8 @@ class Ekraf extends Model
     {
         return $this->belongsTo(Village::class);
     }
+    public function products()
+    {
+        return $this->hasMany(product::class);
+    }
 }

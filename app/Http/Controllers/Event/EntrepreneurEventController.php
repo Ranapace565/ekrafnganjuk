@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Event;
+
+use App\Models\Event;
+use Illuminate\Http\Request;
+use App\Services\EventService;
+use App\Services\SectorService;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Event\StoreEventRequest;
+use App\Http\Requests\Event\UpdateEventRequest;
+use Illuminate\Auth\Access\AuthorizationException;
+
+class EntrepreneurEventController extends Controller
+{
+
+    public function index(Request $request, EventService $EventService, SectorService $sectorService)
+    {
+        $search = $request->input('search');
+        $sectorId = $request->input('sector_id');
+        $status = $request->input('status');
+
+        $Events = $EventService->index($search, $sectorId,  $status);
+
+        $sector = $sectorId ? $sectorService->getById($sectorId) : null;
+        $sector = $sector ? $sector->name : null;
+
+        return view('main-entrepreneur.event', compact(
+            'Events',
+            'search',
+            'sector',
+            'sectorId',
+            'status'
+        ));
+    }
+
+    public function store(StoreEventRequest $request, EventService $EventService)
+    {
+        try {
+            $this->authorize('create', Event::class);
+
+            $validated = $request->validated();
+
+            $EventService->store($validated);
+
+            return redirect()->route('entrepreneur.event.')->with('success', 'Data Event Berhasil Disimpan!');
+        } catch (AuthorizationException $e) {
+            return redirect()->route('entrepreneur.event.form')->withInput()->with('error', $e);
+        }
+    }
+
+    public function edit(EventService $EventService, $slug)
+    {
+        try {
+            $Event = $EventService->findBySlug($slug);
+
+            return view('main-entrepreneur.event-update')->with('data', $Event);
+        } catch (\Exception $e) {
+            Log::error('Gagal mendapatkan pengajuan pengguna: ' . $e->getMessage());
+        }
+    }
+
+    public function update(UpdateEventRequest $request, EventService $EventService, Event $Event)
+    {
+        try {
+            $this->authorize('update', $Event);
+
+            $validated = $request->validated();
+            $file = $request->file('poster');
+
+            // dd($validated);
+
+            $EventService->update($Event, $validated, $file);
+
+            return redirect()->route('entrepreneur.event.')->with('success', 'Pengajuan Event berhasil diperbarui!');
+        } catch (AuthorizationException $e) {
+            return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
+        }
+    }
+}

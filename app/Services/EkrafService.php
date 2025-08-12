@@ -6,19 +6,45 @@ use App\Events\Ekraf\EkrafUpdate;
 use App\Models\Ekraf; // ✅ penting!
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Interfaces\EkrafRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class EkrafService
 {
     protected $ekrafRepository;
 
-    public function __construct(EkrafRepositoryInterface $ekrafRepository)
+    protected $userRepository;
+
+    public function __construct(EkrafRepositoryInterface $ekrafRepository, UserRepositoryInterface $userRepository)
     {
+        $this->userRepository = $userRepository;
         $this->ekrafRepository = $ekrafRepository;
+    }
+
+    public function index(?string $search = null, ?int $sector = null, ?int $district = null, ?int $status = null)
+    {
+        return $this->ekrafRepository->searchAndPaginate($search, $sector, $district, $status);
     }
 
     public function getByUser($userId)
     {
         return $this->ekrafRepository->findByUserId($userId);
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->ekrafRepository->findBySlug($slug);
+    }
+
+    public function store(array $validated)
+    {
+        $email = config('app.main_email');
+        $user = $this->userRepository->findByEmail($email);
+        $validated['user_id'] = $user->id;
+        // dd($user);
+
+        $ekraf = $this->ekrafRepository->store($validated);
+
+        return $ekraf;
     }
 
     public function update(Ekraf $ekraf, array $data): Ekraf

@@ -13,7 +13,6 @@ class NotifyAdminOnEkrafUpdate
 {
     public function handle(EkrafUpdate $event)
     {
-        // Ambil semua user dengan role 'admin' atau 'dev'
         $adminUsers = User::whereIn('role', ['admin', 'dev'])->get();
 
         foreach ($adminUsers as $admin) {

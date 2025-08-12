@@ -70,31 +70,3 @@
         }
     }
 </script>
-<script>
-    const fileInput = document.getElementById('profile');
-    const previewImage = document.getElementById('preview-image');
-    const defaultIcon = document.getElementById('default-icon');
-    const resetBtn = document.getElementById('reset-preview');
-
-    fileInput.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                previewImage.classList.remove('hidden');
-                defaultIcon.classList.add('hidden');
-                resetBtn.classList.remove('hidden');
-            }
-            reader.readAsDataURL(file);
-        }
-    });
-
-    resetBtn.addEventListener('click', function() {
-        fileInput.value = '';
-        previewImage.src = '';
-        previewImage.classList.add('hidden');
-        defaultIcon.classList.remove('hidden');
-        resetBtn.classList.add('hidden');
-    });
-</script>

@@ -4,7 +4,7 @@
         <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
                 <div class="w-full md:w-1/2">
-                    <form class="flex items-center" method="GET" action="{{ route('admin.business.submission.') }}">
+                    <form class="flex items-center" method="GET" action="{{ route('admin.ekraf.submission.') }}">
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -27,7 +27,7 @@
                                 class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Search" required="" value="{{ $search }}">
                             @if ($search)
-                                <a href="{{ route('admin.business.submission.') }}"
+                                <a href="{{ route('admin.ekraf.submission.') }}"
                                     class="absolute inset-y-0 right-0 flex items-center pr-3 mr-4 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -38,8 +38,12 @@
                         </div>
                     </form>
                 </div>
-                <x-search.sec-dis :sector="$sector" :district="$district" />
-
+                <div
+                    class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+                    <x-search.district-search :district="$district" />
+                    <x-search.sector-search :sector="$sector" />
+                </div>
+                {{-- <x-search.sec-dis :sector="$sector" :district="$district" /> --}}
             </div>
         </div>
     </div>

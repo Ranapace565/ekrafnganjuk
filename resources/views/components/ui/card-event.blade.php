@@ -4,55 +4,37 @@
     'detailUrl' => '',
     'editUrl' => '',
     'deleteUrl' => '',
+    'title' => '',
+    'sector' => '',
+    'start_date' => '',
+    'end_date' => '',
+    'location' => '',
+    'poster' => '',
+    'status' => '',
 ])
 
 <div class="">
     <div
         class=" sm:grid {{ $size }}  grid-cols-12 bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-        <img class="col-span-4 w-full h-full object-cover"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" alt="">
+        <img class="col-span-4 w-full h-full object-cover aspect-[3/4]" src="{{ $poster }}" alt="">
         <div class="col-span-8 flex flex-col justify-between p-4 leading-normal">
-            <div class="flex justify-end m-1">
-                <button id="dropdownButton-{{ md5($id) }}" data-dropdown-toggle="dropdown-{{ md5($id) }}"
-                    class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"
-                    type="button">
-                    <span class="sr-only">Open dropdown</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 16 3">
-                        <path
-                            d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                    </svg>
-                </button>
-                <div id="dropdown-{{ md5($id) }}"
-                    class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-800">
-                    <ul class="py-2" aria-labelledby="dropdownButton-{{ md5($id) }}">
-                        <li>
-                            <a href="{{ $detailUrl }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>
-                        </li>
-                        <li>
-                            <a href="{{ $editUrl }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ubah</a>
-                        </li>
-                        <li>
-                            <a href="{{ $deleteUrl }}"
-                                class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="flex justify-between">
+                <x-ui.status :status="$status" />
+
+                <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
             </div>
             <h5 class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur', 20, '..') }}
+                {{ Str::limit($title, 70, '..') }}
             </h5>
             <a href="">
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    {{ Str::limit('Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.', 10, '..') }}</span>
+                    {{ Str::limit($sector, 10, '..') }}</span>
             </a>
             <a href="">
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    {{ Str::limit('Jumat, 15 Desember 2025', 15, '...') }}</span>
+                    {{ Str::limit($start_date . '-' . $end_date, 21, '...') }}</span>
             </a>
 
             <div class="flex items-center gap-2 my-2">
@@ -66,7 +48,7 @@
                 </svg>
 
                 <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                    {{ Str::limit('Lorem ipsum dolor sit amet. Lorem, ipsum dolor.', 20, '...') }}</p>
+                    {{ Str::limit($location, 20, '...') }}</p>
             </div>
             {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.', 60, '...') }}

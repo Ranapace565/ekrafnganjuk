@@ -16,9 +16,17 @@ class EntrepreneurEkrafController extends Controller
         try {
             $userId = Auth::id();
             $Ekraf = $EkrafService->getByUser($userId);
+            return view('main-visitor.ekraf-detail')->with('data', $Ekraf);
+        } catch (\Exception $e) {
+            Log::error('Gagal mendapatkan pengajuan pengguna: ' . $e->getMessage());
+        }
+    }
 
-            // dd($Ekraf);
-
+    public function edit(EkrafService $EkrafService)
+    {
+        try {
+            $userId = Auth::id();
+            $Ekraf = $EkrafService->getByUser($userId);
             return view('main-entrepreneur.business-update')->with('data', $Ekraf);
         } catch (\Exception $e) {
             Log::error('Gagal mendapatkan pengajuan pengguna: ' . $e->getMessage());

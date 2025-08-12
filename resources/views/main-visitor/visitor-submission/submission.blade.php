@@ -43,7 +43,7 @@
                     <label for="sector" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sektor
                         <span class="text-red-600">*</span></label>
                     {{-- <x-forms.sectorF /> --}}
-                    <x-forms.sectorF :data="$data['sector_id']" />
+                    <x-forms.sectorF :data="$data['sector_id']" required />
 
                 </div>
 

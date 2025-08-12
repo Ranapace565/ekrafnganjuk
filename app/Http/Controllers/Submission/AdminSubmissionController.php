@@ -46,7 +46,6 @@ class AdminSubmissionController extends Controller
     public function show(SubmissionService $submissionService, $id)
     {
         try {
-            // $userId = Auth::id();
             $submission = $submissionService->getById($id);
 
             return view('main-admin.business-submission-detail')->with('data', $submission);
@@ -66,7 +65,7 @@ class AdminSubmissionController extends Controller
 
             $submissionService->reject($submission, $validated);
 
-            return redirect()->route('admin.business.submission.')->with('success', 'Pengajuan berhasil ditolak!');
+            return redirect()->route('admin.ekraf.submission.')->with('success', 'Pengajuan berhasil ditolak!');
         } catch (AuthorizationException $e) {
             return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
         }
@@ -78,11 +77,9 @@ class AdminSubmissionController extends Controller
 
             $this->authorize('approve', $submission);
 
-            // $validated = $request->validated();
-
             $submissionService->approve($submission, $ekraf);
 
-            return redirect()->route('admin.business.submission.')->with('success', 'Pengajuan berhasil diterima, dan menjadi usaha terdaftar!');
+            return redirect()->route('admin.ekraf.submission.')->with('success', 'Pengajuan berhasil diterima, dan menjadi usaha terdaftar!');
         } catch (AuthorizationException $e) {
             return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
         }

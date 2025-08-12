@@ -10,4 +10,6 @@ interface UserRepositoryInterface
 {
     // public function store(array $data);
     public function update(User $user, array $data);
+
+    public function findByEmail($email);
 }

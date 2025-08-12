@@ -1,4 +1,4 @@
-<form action="{{ route('admin.business.submission.reject', $data->id) }}" method="POST" enctype="multipart/form-data"
+<form action="{{ route('admin.ekraf.submission.reject', $data->id) }}" method="POST" enctype="multipart/form-data"
     class="col-span-2">
 
     @csrf
@@ -34,7 +34,7 @@
         </a> --}}
     </div>
 </form>
-<form action="{{ route('admin.business.submission.approve', $data->id) }}" method="POST" enctype="multipart/form-data"
+<form action="{{ route('admin.ekraf.submission.approve', $data->id) }}" method="POST" enctype="multipart/form-data"
     class="col-span-2">
 
     @csrf

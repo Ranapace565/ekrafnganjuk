@@ -20,4 +20,5 @@ class UserService
         $user = $this->UserRepository->update($user, $data);
         return $user;
     }
+
 }

@@ -15,12 +15,10 @@ class UpdateEkrafRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'user_id'      => ['required', 'exists:users,id'],
             'sector_id'    => ['required', 'exists:sectors,id'],
             'district_id'  => ['required', 'exists:districts,id'],
             'village_id'   => ['required', 'exists:villages,id'],
             'name'         => ['required', 'string', 'max:255'],
-            // 'slug'         => ['required', 'string', 'max:255', 'unique:ekrafs,slug'],
             'contact'      => ['required', 'string', 'max:255'],
             'category'     => ['required', 'string', 'max:255'],
             'manager'      => ['required', 'string', 'max:255'],
@@ -30,10 +28,7 @@ class UpdateEkrafRequest extends FormRequest
             'longitude'    => ['required', 'string', 'max:255'],
             'location'     => ['required', 'string', 'max:255'],
             'description'  => ['nullable', 'string', 'max:1000'],
-
-            // 'status'       => ['nullable', 'integer', 'in:0,1,2'],
             'active'       => ['nullable', 'boolean'],
-
             'note'         => ['nullable', 'string', 'max:1000'],
             'male'         => ['nullable', 'numeric', 'min:0'],
             'female'       => ['nullable', 'numeric', 'min:0'],

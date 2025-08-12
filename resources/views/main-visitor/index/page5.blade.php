@@ -30,9 +30,7 @@
                             <time
                                 class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">February
                                 2022</time>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Application UI code in
-                                Tailwind
-                                CSS</h3>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Daftar Event</h3>
                             <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over
                                 20+
                                 pages including a dashboard layout, charts, kanban board, calendar, and pre-order

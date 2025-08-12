@@ -1,18 +1,22 @@
 <?php
 
-use App\Http\Controllers\Ekraf\EntrepreneurEkrafController;
 use App\Models\District;
 use App\Models\Submission;
-// use App\Http\ControllersSubmissionController;
 use Illuminate\Support\Env;
-use App\Events\Submission\SubmissionCreated;
+// use App\Http\ControllersSubmissionController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Mail\SubmissionNotificationToAdmin;
+use App\Events\Submission\SubmissionCreated;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Ekraf\AdminEkrafController;
+use App\Http\Controllers\Ekraf\VisitorEkrafController;
 use App\Http\Controllers\upload\ImageUploadController;
 use App\Http\Controllers\sector\PublicSectorController;
+use App\Http\Controllers\Ekraf\EntrepreneurEkrafController;
+use App\Http\Controllers\Event\EntrepreneurEventController;
+use App\Http\Controllers\Product\EntrepreneurProductController;
 use App\Http\Controllers\Submission\AdminSubmissionController;
 use App\Http\Controllers\Submission\VisitorSubmissionController;
 
@@ -67,9 +71,11 @@ Route::get('/infografis', function () {
     return view('main-visitor.infografis');
 });
 
-Route::get('/sektor', function () {
-    return view('main-visitor.sector');
-});
+// Route::get('/sektor', function () {
+//     return view('main-visitor.sector');
+// });
+
+Route::get('/sektor', [VisitorEkrafController::class, 'index'])->name('sector');
 
 Route::get('/informasi', function () {
     return view('main-visitor.article');
@@ -91,8 +97,8 @@ Route::get('/event-detail', function () {
     return view('main-visitor.event-detail');
 });
 
-Route::get('/usaha', function () {
-    return view('main-visitor.business-detail');
+Route::get('/ekraf', function () {
+    return view('main-visitor.ekraf-detail');
 });
 
 Route::get('/keluar', function () {
@@ -126,26 +132,43 @@ Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
             return view('main-entrepreneur.index');
         });
 
-        Route::prefix('business')->name('business.')->group(function () {
+        Route::prefix('ekraf')->name('ekraf.')->group(function () {
+
+            Route::get('/', [EntrepreneurEkrafController::class, 'edit'])->name('detail');
+
+            Route::put('/update/{ekraf}', [EntrepreneurEkrafController::class, 'update'])->name('update');
+        });
+
+        Route::prefix('product')->name('product.')->group(function () {
+
+            Route::get('/', function () {
+                return view('main-entrepreneur.product');
+            });
+
+            Route::get('/form', function () {
+                return view('main-entrepreneur.product-form');
+            })->name('form');
+
+            Route::post('/store', [EntrepreneurProductController::class, 'store'])->name('store');
 
             Route::get('/', [EntrepreneurEkrafController::class, 'show'])->name('detail');
 
             Route::put('/update/{ekraf}', [EntrepreneurEkrafController::class, 'update'])->name('update');
         });
 
+        Route::prefix('event')->name('event.')->group(function () {
 
-        Route::get('/product', function () {
-            return view('main-entrepreneur.product');
-        });
-        Route::get('/product/form', function () {
-            return view('main-entrepreneur.product-form');
-        });
+            Route::get('/', [EntrepreneurEventController::class, 'index']);
 
-        Route::get('/event', function () {
-            return view('main-entrepreneur.event');
-        });
-        Route::get('/event/form', function () {
-            return view('main-entrepreneur.event-form');
+            Route::get('/form', function () {
+                return view('main-entrepreneur.event-form');
+            })->name('form');
+
+            Route::post('/store', [EntrepreneurEventController::class, 'store'])->name('store');
+
+            Route::get('/edit/{slug}', [EntrepreneurEventController::class, 'edit'])->name('edit');
+
+            Route::put('/update/{event}', [EntrepreneurEventController::class, 'update'])->name('update');
         });
 
         Route::get('/inbox', function () {
@@ -165,7 +188,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')
             return view('main-admin.index');
         });
 
-        Route::prefix('business')->name('business.')->group(function () {
+        Route::prefix('ekraf')->name('ekraf.')->group(function () {
 
             Route::prefix('submission')->name('submission.')->group(function () {
                 Route::get('/', [AdminSubmissionController::class, 'index']);
@@ -177,24 +200,22 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')
                 Route::post('/approve/{submission}', [AdminSubmissionController::class, 'approve'])->name('approve');
             });
 
-            Route::get('/', function () {
-                return view('main-admin.business');
-            });
+            Route::get('/', [AdminEkrafController::class, 'index']);
+
+            Route::get('/form', function () {
+                return view('main-admin.ekraf-form');
+            })->name('form');
+
+            Route::post('/store', [AdminEkrafController::class, 'store'])->name('store');
 
             Route::get('/report', function () {
-                return view('main-admin.business-report');
+                return view('main-admin.ekraf-report');
             })->name('report');
 
             Route::get('/nonaktif', function () {
-                return view('main-admin.business-nonaktif');
+                return view('main-admin.ekraf-nonaktif');
             })->name('nonaktif');
         });
-
-        // Route::get('/business-submission', function () {
-        //     return view('main-admin.business-submission');
-        // })->name('business.submission');
-
-
 
         Route::get('/sector/form', function () {
             return view('main-admin.sector-form');

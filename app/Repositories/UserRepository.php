@@ -13,6 +13,11 @@ class UserRepository implements UserRepositoryInterface
         return $user;
     }
 
+    public function findByEmail($email)
+    {
+        return User::where('email', $email)->first();
+    }
+
     // public function searchAndPaginate(?string $search = null, ?int $sectorId = null, ?int $districtId = null, int $perPage = 12)
     // {
     //     return User::query()

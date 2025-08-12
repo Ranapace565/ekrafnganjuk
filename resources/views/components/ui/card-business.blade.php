@@ -9,25 +9,15 @@
     'image' => 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png',
     'status' => '',
     'sector_id' => '',
-    'manager' => 'Penanggung jawab',
-    'contact' => '0867',
+    'manager' => null,
+    'contact' => null,
 ])
 
 <div
-    class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+    class="rounded-lg border border-gray-200 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
     <div class="flex justify-between">
-        <a href="">
-            @if ($status == 1)
-                <span
-                    class="me-2 rounded bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">
-                    {{ Str::limit('Pengajuan', 10, '..') }}</span>
-            @else
-                <span
-                    class="me-2 rounded bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900 dark:text-red-300">
-                    {{ Str::limit('Ditolak', 10, '..') }}</span>
-            @endif
+        <x-ui.status :status="$status" />
 
-        </a>
         <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
     </div>
     <div class="w-full">
@@ -48,7 +38,8 @@
         <a href="#"
             class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">{{ Str::limit($title, 20, '...') }}</a>
 
-        <div class="">
+        {{-- <div class=""> --}}
+        @if ($manager != null)
             <div class="flex gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -56,9 +47,13 @@
                         d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
                 </svg>
 
+
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {{ Str::limit($manager, 20, '...') }}</p>
+
             </div>
+        @endif
+        @if ($contact != null)
             <div class="flex gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -69,20 +64,22 @@
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {{ Str::limit($contact, 20, '...') }}</p>
             </div>
-            <div class="flex gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <!-- Pointer Geo -->
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 21s7-6.167 7-11a7 7 0 1 0-14 0c0 4.833 7 11 7 11z" />
-                    <!-- Titik di tengah -->
-                    <circle cx="12" cy="10" r="2" fill="currentColor" />
-                </svg>
+        @endif
 
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    {{ Str::limit($location, 30, '...') }}</p>
-            </div>
+        <div class="flex gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <!-- Pointer Geo -->
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 21s7-6.167 7-11a7 7 0 1 0-14 0c0 4.833 7 11 7 11z" />
+                <!-- Titik di tengah -->
+                <circle cx="12" cy="10" r="2" fill="currentColor" />
+            </svg>
+
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                {{ Str::limit($location, 30, '...') }}</p>
         </div>
+        {{-- </div> --}}
 
         <div class="mt-4 flex items-center justify-between gap-4">
 

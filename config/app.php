@@ -20,6 +20,9 @@ return [
 
     'name' => env('APP_NAME', 'EKRAF NGANJUK'),
 
+    'main_email' => env('MAIL_USERNAME'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
