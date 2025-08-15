@@ -40,21 +40,12 @@ class EventRepository implements EventRepositoryInterface
 
     public function update(Event $event, array $data): Event
     {
-
-        // if (isset($data['poster']) && $data['poster']->isValid()) {
-        //     if ($event->poster && Storage::disk('public')->exists($event->poster)) {
-        //         Storage::disk('public')->delete($event->poster);
-        //     }
-        //     $data['poster'] = $data['poster']->store('events/posters', 'public');
-        // }
-
         $event->update($data);
         return $event;
     }
 
-    // public function update(Submission $submission, array $data): Submission
-    // {
-    //     $submission->update($data);
-    //     return $submission;
-    // }
+    public function destroy(Event $Event): bool
+    {
+        return $Event->delete();
+    }
 }

@@ -38,15 +38,11 @@ Route::group(['prefix' => 'laravel-filemanager'], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [GoogleController::class, 'index']);
-});
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+//     Route::get('/admin/dashboard', [GoogleController::class, 'index']);
+// });
 
 // rute registrasi
-
-
-
-
 
 
 
@@ -58,11 +54,6 @@ Route::get('/beranda', function () {
     return view('main-visitor.index');
 })->name('beranda');
 
-// Route::get('/beranda', function () {
-//     session()->flash('error', 'Data berhasil disimpan.');
-//     return view('main-visitor.index');
-// })->name('beranda');
-
 Route::get('/tentang', function () {
     return view('main-visitor.about');
 });
@@ -70,10 +61,6 @@ Route::get('/tentang', function () {
 Route::get('/infografis', function () {
     return view('main-visitor.infografis');
 });
-
-// Route::get('/sektor', function () {
-//     return view('main-visitor.sector');
-// });
 
 Route::get('/sektor', [VisitorEkrafController::class, 'index'])->name('sector');
 
@@ -105,10 +92,6 @@ Route::get('/keluar', function () {
     return view('main-visitor.index');
 });
 
-
-// Route::middleware(['auth', 'role:visitor_logged'])->group(function () {
-//     Route::get('/admin/dashboard', [GoogleController::class, 'index']);
-// });
 
 
 Route::middleware(['auth', 'role:visitor_logged'])->prefix('visitor_logged')
@@ -169,6 +152,8 @@ Route::middleware(['auth', 'role:entrepreneur'])->prefix('entrepreneur')
             Route::get('/edit/{slug}', [EntrepreneurEventController::class, 'edit'])->name('edit');
 
             Route::put('/update/{event}', [EntrepreneurEventController::class, 'update'])->name('update');
+
+            Route::delete('/{event}', [EntrepreneurEventController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/inbox', function () {
@@ -271,8 +256,6 @@ Route::get('/test-email', function () {
     }
 
     event(new SubmissionCreated($submission));
-
-    // Mail::to('nganjukekraf@gmail.com')->send(new SubmissionNotificationToAdmin($submission));
 
     return 'Email notifikasi submission dikirim ke admin@example.com';
 });

@@ -69,13 +69,22 @@ class EntrepreneurEventController extends Controller
             $validated = $request->validated();
             $file = $request->file('poster');
 
-            // dd($validated);
-
             $EventService->update($Event, $validated, $file);
 
             return redirect()->route('entrepreneur.event.')->with('success', 'Pengajuan Event berhasil diperbarui!');
         } catch (AuthorizationException $e) {
-            return back()->with('error', 'Tidak diizinkan melakukan perubahan.');
+            return back()->with('error', 'Tidak diizinkan melakukan perubahan.' . $e->getMessage());
+        }
+    }
+
+    public function destroy(EventService $EventService, Event $Event)
+    {
+        try {
+            $EventService->destroy($Event);
+
+            return redirect()->route('entrepreneur.event.')->with('success', 'Event berhasil dihapus!');
+        } catch (AuthorizationException $e) {
+            return back()->with('error', 'Tidak diizinkan melakukan penghapusan event.' . $e->getMessage());
         }
     }
 }

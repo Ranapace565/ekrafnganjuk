@@ -10,4 +10,5 @@ interface EventRepositoryInterface
     public function store(array $data);
     public function findBySlug($slug);
     public function update(Event $ekraf, array $data);
+    public function destroy(Event $ekraf);
 }

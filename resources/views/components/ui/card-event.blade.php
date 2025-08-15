@@ -50,9 +50,6 @@
                 <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
                     {{ Str::limit($location, 20, '...') }}</p>
             </div>
-            {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {{ Str::limit('Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.', 60, '...') }}
-        </p> --}}
             <div class="flex justify-end">
                 <a href="{{ '/event-detail' }}"
                     class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium ">selengkapnya

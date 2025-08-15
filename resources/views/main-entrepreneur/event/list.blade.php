@@ -5,7 +5,8 @@
             @if ($Events != null)
                 @foreach ($Events as $Event)
                     <x-ui.card-event size="" :title="$Event->title" :sector="$Event->sector->name" :start_date="$Event->start_date"
-                        :end_date="$Event->end_date" :location="$Event->location" :poster="asset('storage/' . $Event->poster)" :status="$Event->status" :editUrl="route('entrepreneur.event.edit', $Event->slug)" />
+                        :end_date="$Event->end_date" :location="$Event->location" :poster="asset('storage/' . $Event->poster)" :status="$Event->status" :editUrl="route('entrepreneur.event.edit', $Event->slug)"
+                        :deleteUrl="route('entrepreneur.event.destroy', $Event->id)" />
                 @endforeach
             @endif
         </div>

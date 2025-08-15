@@ -45,22 +45,3 @@
         </div>
     </div>
 </div>
-
-
-{{-- penggunaan --}}
-{{-- <x-confirm-modal 
-    id="modal-delete-{{ $item->id }}" 
-    :message="'Apakah Anda yakin ingin menghapus data ini?'" 
-    :action="route('produk.destroy', $item->id)" 
-    method="DELETE"
-    confirmText="Ya, Hapus"
-    cancelText="Batal"
-/> --}}
-
-<!-- Tombol untuk memunculkan modal -->
-{{-- <button type="button" 
-    data-modal-target="modal-delete-{{ $item->id }}" 
-    data-modal-toggle="modal-delete-{{ $item->id }}" 
-    class="text-red-600 hover:underline">
-    Hapus
-</button> --}}

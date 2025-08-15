@@ -34,12 +34,20 @@
                 @endif
                 @if ($deleteUrl != null)
                     <li>
-                        <a href="{{ $deleteUrl }}"
-                            class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Hapus</a>
+                        <button type="button" data-modal-target="modal-delete-{{ md5($id) }}"
+                            data-modal-toggle="modal-delete-{{ md5($id) }}"
+                            class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            Hapus
+                        </button>
                     </li>
                 @endif
             </ul>
         </div>
     </div>
+
+    @if ($deleteUrl)
+        <x-ui.modal-confirm id="modal-delete-{{ md5($id) }}" :message="'Apakah Anda yakin ingin menghapus data ini?'" :action="$deleteUrl" method="DELETE"
+            confirmText="Ya, Hapus" cancelText="Batal" />
+    @endif
 
 @endif

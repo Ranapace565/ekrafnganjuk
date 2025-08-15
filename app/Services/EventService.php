@@ -60,18 +60,18 @@ class EventService
 
         $Event = $this->EventRepository->update($Event, $validated);
 
-        // if ($wasRejected) {
-        //     event(new EventCreated($Event));
-        // }
-
         return $Event;
     }
-
-
     protected function deletePosterFile(Event $Event)
     {
         if ($Event->poster && Storage::disk('public')->exists($Event->poster)) {
             Storage::disk('public')->delete($Event->poster);
         }
+    }
+
+    public function destroy(Event $Event)
+    {
+        $this->deletePosterFile($Event);
+        $this->EventRepository->destroy($Event);
     }
 }
