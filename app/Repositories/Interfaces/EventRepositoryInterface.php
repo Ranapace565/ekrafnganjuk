@@ -6,6 +6,7 @@ use App\Models\Event;
 
 interface EventRepositoryInterface
 {
+    public function searchAndPaginateAll(?string $search = null, ?int $sector = null, ?int $status = null, int $perPage = 10);
     public function searchAndPaginate(?string $search = null, ?int $sector = null, ?int $status = null, int $perPage = 10);
     public function store(array $data);
     public function findBySlug($slug);

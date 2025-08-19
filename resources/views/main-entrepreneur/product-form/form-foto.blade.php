@@ -67,14 +67,13 @@
         }
 
         renderPreviews();
-
-        // Reset input agar file dengan nama sama bisa dipilih ulang
-        event.target.value = '';
+        syncInputFiles();
     }
 
     function removeImage(index) {
         selectedFiles.splice(index, 1);
         renderPreviews();
+        syncInputFiles();
     }
 
     function renderPreviews() {
@@ -107,5 +106,12 @@
             };
             reader.readAsDataURL(file);
         });
+    }
+
+
+    function syncInputFiles() {
+        const dataTransfer = new DataTransfer();
+        selectedFiles.forEach(file => dataTransfer.items.add(file));
+        document.getElementById('image-upload').files = dataTransfer.files;
     }
 </script>

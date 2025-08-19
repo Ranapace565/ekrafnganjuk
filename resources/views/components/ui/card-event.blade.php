@@ -23,19 +23,25 @@
 
                 <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
             </div>
-            <h5 class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-                {{ Str::limit($title, 70, '..') }}
-            </h5>
-            <a href="">
+
+            <div class="break-words">
+                <h5 class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
+                    {{ Str::limit($title, 70, '..') }}
+                </h5>
+            </div>
+
+            <label class="text-sm">
+                Sub Sektor :
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                    {{ Str::limit($sector, 10, '..') }}</span>
-            </a>
-            <a href="">
+                    {{ Str::limit($sector, 20, '..') }}</span>
+            </label>
+            <label class="text-sm">
+                Tanggal :
                 <span
                     class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                     {{ Str::limit($start_date . '-' . $end_date, 21, '...') }}</span>
-            </a>
+            </label>
 
             <div class="flex items-center gap-2 my-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400" fill="none"
@@ -48,8 +54,9 @@
                 </svg>
 
                 <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                    {{ Str::limit($location, 20, '...') }}</p>
+                    {{ Str::limit($location, 40, '...') }}</p>
             </div>
+
             <div class="flex justify-end">
                 <a href="{{ '/event-detail' }}"
                     class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium ">selengkapnya

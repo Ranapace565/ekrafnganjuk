@@ -9,6 +9,21 @@ use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class EventRepository implements EventRepositoryInterface
 {
+    public function searchAndPaginateAll(?string $search = null, ?int $sectorId = null, ?int $status = null, int $perPage = 12)
+    {
+        return Event::query()
+            ->with(['user', 'sector'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                        ->orWhere('location', 'like', "%{$search}%");
+                });
+            })
+            ->when($sectorId, fn($query) => $query->where('sector_id', $sectorId))
+            ->when(is_numeric($status), fn($query) => $query->where('status', $status))
+            ->orderBy('status', 'asc')
+            ->paginate($perPage);
+    }
     public function searchAndPaginate(?string $search = null, ?int $sectorId = null, ?int $status = null, int $perPage = 12)
     {
         return Event::query()
@@ -22,7 +37,7 @@ class EventRepository implements EventRepositoryInterface
             ->when($sectorId, fn($query) => $query->where('sector_id', $sectorId))
             ->when(is_numeric($status), fn($query) => $query->where('status', $status))
             ->where('user_id', Auth::user()->id)
-            ->orderBy('status', 'desc')
+            ->orderBy('status', 'asc')
             ->paginate($perPage);
     }
     public function store(array $data)

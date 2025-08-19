@@ -47,7 +47,7 @@ class Product extends Model
     }
     public function images()
     {
-        return $this->hasMany(productimg::class);
+        return $this->hasMany(Productimg::class);
     }
     public function ekraf()
     {

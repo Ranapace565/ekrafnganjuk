@@ -21,6 +21,11 @@ class EventService
         $this->EventRepository = $EventRepository;
     }
 
+    public function indexAdmin(?string $search = null, ?int $sector = null, ?int $status = null)
+    {
+        return $this->EventRepository->searchAndPaginateAll($search, $sector, $status);
+    }
+
     public function index(?string $search = null, ?int $sector = null, ?int $status = null)
     {
         return $this->EventRepository->searchAndPaginate($search, $sector, $status);

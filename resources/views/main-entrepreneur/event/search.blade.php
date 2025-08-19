@@ -24,7 +24,7 @@
                                 class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Search" required="" value="{{ $search }}">
                             @if ($search)
-                                <a href="{{ route('admin.ekraf.') }}"
+                                <a href="{{ route('entrepreneur.event.') }}"
                                     class="absolute inset-y-0 right-0 flex items-center pr-3 mr-4 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

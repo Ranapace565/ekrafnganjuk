@@ -8,7 +8,6 @@
         </h2>
         <form method="POST" action="{{ route('entrepreneur.product.store') }}" enctype="multipart/form-data">
             @csrf
-
             @include('main-entrepreneur.product-form.form-foto')
             @include('main-entrepreneur.product-form.form-information')
         </form>

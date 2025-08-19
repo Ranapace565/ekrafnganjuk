@@ -4,13 +4,12 @@
                 class="text-red-600">*</span></label>
         <input type="text" name="title" id="title"
             class="md:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            placeholder="Web Development & Agriculture" required>
+            placeholder="Web Development & Agriculture" required value="{{ $data->title }}">
     </div>
     <div class="w-full">
         <label for="sector" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub
-            Sektor
-        </label>
-        <x-forms.sector-f required :choose="'Semua Sektor'" />
+            Sektor</label>
+        <x-forms.sector-f required :choose="'Semua Sektor'" :data="$data['sector_id']" />
     </div>
     <div class="col-span-2">
         <label for="datepicker-range-start" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white flex">
@@ -39,7 +38,7 @@
                 </div>
                 <input id="datepicker-range-start" name="start_date" type="text"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Tanggal Mulai" required>
+                    placeholder="Tanggal Mulai" required value="{{ $data->start_date }}">
             </div>
             <span class="mx-4 text-gray-500">sampai</span>
             <div class="relative">
@@ -52,10 +51,12 @@
                 </div>
                 <input id="datepicker-range-end" name="end_date" type="text"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Tanggal Selesai">
+                    placeholder="Tanggal Selesai" value="{{ $data->end_date }}">
             </div>
         </div>
+
     </div>
+
     <div class="col-span-2">
         <label for="cover-photo" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white">Lokasi
             Event <span class="text-red-600">*</span> <x-ui.popover id="lokasi-Event" :messages="[
@@ -66,14 +67,14 @@
             ]">
             </x-ui.popover>
         </label>
-        <x-forms.maps />
+        <x-forms.maps :data="$data" />
 
     </div>
 
     <div class="col-span-2">
         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
             Event <span class="text-red-600">*</span></label>
-        <x-forms.public-tinymce-editor name="description" />
+        <x-forms.public-tinymce-editor name="description" :data="$data['description']" />
     </div>
 
 

@@ -11,10 +11,11 @@
             ]">
             </x-ui.popover>
         </h2>
-        <form method="POST" action="{{ route('admin.event.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.event.update', $data->id) }}" enctype="multipart/form-data">
             @csrf
-            @include('main-admin.event-form.form-foto')
-            @include('main-admin.event-form.form-information')
+            @method('PUT')
+            @include('main-admin.event-update.form-foto')
+            @include('main-admin.event-update.form-information')
         </form>
     </div>
 </x-layouts.admin>
