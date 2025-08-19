@@ -34,7 +34,6 @@ class EntrepreneurProductController extends Controller
                 'ekraf_id' => $ekrafRepository->findByUserId(Auth::id())->id
             ]);
 
-            // dd($request->file('images'));
             $product = $service->store($request);
 
             return redirect()->route('entrepreneur.product.')->with('success', 'Produk berhasil ditambahkan');
@@ -57,8 +56,6 @@ class EntrepreneurProductController extends Controller
     {
 
         try {
-
-            // $deleteImageIds = $request->input('delete_images', []);
 
             $deleteImageIds = json_decode($request->input('deleted_images', '[]'), true);
 

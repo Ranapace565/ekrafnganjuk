@@ -58,7 +58,7 @@
             </div>
 
             <div class="flex justify-end">
-                <a href="{{ '/event-detail' }}"
+                <a href="{{ $detailUrl }}"
                     class="inline-flex items-center text-blue-600 hover:underline dark:text-blue-500 font-medium ">selengkapnya
                     <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">

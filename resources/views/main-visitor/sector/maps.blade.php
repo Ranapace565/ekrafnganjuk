@@ -83,7 +83,7 @@
     <div style="text-align:center; min-width:180px;">
         ${ekraf.logo ? `<img src="/storage/${ekraf.logo}" alt="${ekraf.name}" style="width:80px; height:80px; margin:5px auto; object-fit:cover; border-radius:50%; display:block;">` : ''}
         <strong>${ekraf.name}</strong><br>
-        ${ekraf.sector ? `<p><em>${ekraf.sector.name}</em></p>` : ''}
+        ${ekraf.sector ? `<p>${ekraf.sector.name}</p>` : ''}
         ${ekraf.contact || ekraf.manager ? 
             `<p>📞 ${ekraf.contact ? ekraf.contact : '-'} ${ekraf.manager ? ` | 👤 ${ekraf.manager}` : ''}</p>` 
             : ''}

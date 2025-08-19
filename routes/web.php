@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Ekraf\AdminEkrafController;
 use App\Http\Controllers\Event\AdminEventController;
 use App\Http\Controllers\Ekraf\VisitorEkrafController;
+use App\Http\Controllers\Event\VisitorEventController;
 use App\Http\Controllers\upload\ImageUploadController;
 use App\Http\Controllers\sector\PublicSectorController;
 use App\Http\Controllers\Ekraf\EntrepreneurEkrafController;
@@ -67,6 +68,7 @@ Route::get('/sektor', [VisitorEkrafController::class, 'index'])->name('sector');
 
 Route::get('/ekraf/{slug}', [VisitorEkrafController::class, 'index'])->name('ekraf');
 
+
 Route::get('/informasi', function () {
     return view('main-visitor.article');
 });
@@ -79,13 +81,11 @@ Route::get('/artikel-detail', function () {
     return view('main-visitor.article-detail');
 });
 
-Route::get('/event', function () {
-    return view('main-visitor.event');
-});
+Route::get('/event', [VisitorEventController::class, 'index'])->name('event');
 
-Route::get('/event-detail', function () {
-    return view('main-visitor.event-detail');
-});
+Route::get('/event/{slug}', [VisitorEventController::class, 'show'])->name('event-detail');
+
+Route::get('/event/search', [VisitorEventController::class, 'search'])->name('event-detail-search');
 
 Route::get('/ekraf', function () {
     return view('main-visitor.ekraf-detail');

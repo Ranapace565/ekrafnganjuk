@@ -22,65 +22,6 @@
         placeholder="Nganjuk, East Java, Java, 64414, Indonesia" value="{{ $location }}" required>
 </div>
 
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let latInput = document.getElementById('latitude');
-        let lngInput = document.getElementById('longitude');
-        let koordinatInput = document.getElementById('koordinat');
-        let locationInput = document.getElementById('location-name');
-
-        const initialLat = parseFloat(latInput.value) || -7.599676;
-        const initialLng = parseFloat(lngInput.value) || 111.904380;
-
-        const map = L.map('map').setView([initialLat, initialLng], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        let marker = null;
-
-        // Jika ada koordinat awal, tampilkan marker
-        if (latInput.value && lngInput.value) {
-            marker = L.marker([initialLat, initialLng]).addTo(map);
-        }
-
-        map.on('click', function(e) {
-            const lat = e.latlng.lat;
-            const lng = e.latlng.lng;
-
-            latInput.value = lat;
-            lngInput.value = lng;
-            koordinatInput.value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-
-            if (marker) {
-                map.removeLayer(marker);
-            }
-            marker = L.marker([lat, lng]).addTo(map);
-
-            // PENTING: Tambahkan header User-Agent agar tidak diblokir
-            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`, {
-                    headers: {
-                        'User-Agent': 'MyWebApp (your@email.com)',
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.display_name) {
-                        locationInput.value = data.display_name;
-                    } else {
-                        locationInput.value = 'Tidak ditemukan';
-                    }
-                })
-                .catch(err => {
-                    console.error('Gagal ambil nama lokasi:', err);
-                    locationInput.value = 'Gagal memuat nama lokasi';
-                });
-        });
-    });
-</script> --}}
-
 <script src="https://unpkg.com/leaflet-pip/leaflet-pip.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

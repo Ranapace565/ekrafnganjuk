@@ -37,8 +37,6 @@ class ProductService
 
         $product = $this->ProductRepository->createProduct($productData);
 
-        // dd($request->file('images'));
-
         if ($request->hasFile('images')) {
             $this->ProductRepository->storeImages($product, $request->file('images'));
         }
