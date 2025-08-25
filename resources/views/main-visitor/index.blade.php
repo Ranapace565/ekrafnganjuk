@@ -6,7 +6,7 @@
 
     @include('main-visitor.index.page1')
 
-    @include('main-visitor.index.page6')
+    {{-- @include('main-visitor.index.page6') --}}
 
     @include('main-visitor.index.page2')
 

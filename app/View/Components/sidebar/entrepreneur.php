@@ -8,16 +8,15 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
-class entrepreneur extends Component
+class Entrepreneur extends Component
 {
     public $eventReject;
     public function __construct()
     {
         try {
             $this->eventReject = Event::where('user_id', Auth::id())
-    ->where('status', 0)
-    ->count();
-
+                ->where('status', 0)
+                ->count();
         } catch (\Exception $e) {
             $this->eventReject = collect(); // Supaya foreach tidak error jika gagal
         }

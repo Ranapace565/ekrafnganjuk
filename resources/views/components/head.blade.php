@@ -2,9 +2,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    @vite('resources/css/app.css')
+    <title>safas</title>
+
+    {{-- @vite('resources/css/app.css')
+
+    @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
+    {{-- <link rel="stylesheet" href="/build/assets/app-yHk7XlFd.css">
+    <script src="/build/assets/app-T1DpEqax.js"></script> --}}
+
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <!-- Flowbite CSS (Wajib untuk komponen seperti datepicker) -->

@@ -1,4 +1,4 @@
-<div id="default-carousel" class="max-w-screen-xl px-4 py-8 mx-auto relative" data-carousel="slide">
+<div id="default-carousel" class="max-w-screen-xl px-4 py-8 mx-auto relative scroolSectionUp" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-[300px] overflow-hidden rounded-lg md:h-[500px]">
         <!-- Item 1 -->
@@ -68,3 +68,5 @@
         </span>
     </button>
 </div>
+
+@vite('resources/js/visitor/index/page6.js')

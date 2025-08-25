@@ -1,11 +1,3 @@
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
 {{-- <div class="min-h-full"> --}}
 <nav class="fixed top-0 left-0 w-full z-[9999] bg-white shadow dark:bg-gray-900 " x-data="{ isOpen: false }"
     x-on:click.outside="isOpen = false">
@@ -14,9 +6,7 @@
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="shrink-0">
-                    <img class="size-8"
-                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                        alt="Your Company">
+                    <img class="w-5 h-auto" src="{{ asset('img/Logo/logo_kreasikan.svg') }}" alt="Your Company">
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
@@ -85,7 +75,7 @@
                         <div class="flex items-center">
                             <a href="{{ route('login') }}"
                                 class="text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                Mahok
+                                Masuk
                             </a>
                         </div>
                     @endguest
@@ -192,7 +182,7 @@
                         <a href="/event"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Event</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
                     </li>
@@ -200,7 +190,7 @@
                         <a href="#"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
                             out</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
 

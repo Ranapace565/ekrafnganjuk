@@ -15,9 +15,9 @@
                 </button>
 
                 <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                    <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Ekraf</span>
+                    <img src="{{ asset('img/Logo/logo_kreasikan.svg') }}" class="h-8 me-3" alt="FlowBite Logo" />
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Admin
+                        Kreasikan</span>
                 </a>
             </div>
             <div class="flex items-center">
@@ -28,17 +28,18 @@
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
                             <img class="w-8 h-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                                src="{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}"
+                                alt="{{ Auth::user()->name }}">
                         </button>
                     </div>
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600"
                         id="dropdown-user">
                         <div class="px-4 py-3" role="none">
                             <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                {{ $user->name }}
+                                {{ Auth::user()->name }}
                             </p>
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                {{ $user->email }}
+                                {{ Auth::user()->email }}
                             </p>
                         </div>
                         <ul class="py-1" role="none">
@@ -73,60 +74,42 @@
             <li>
                 <x-sidebar.link-dropdown :active="request()->is('admin/ekraf*')" label="Ekraf" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 16 20\"> <path d=\"M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z\" /> </svg>"'
                     :items="[
-                        ['label' => 'Pengajuan Ekraf', 'url' => '/admin/ekraf/submission', 'active' => request() ->
-                            is('admin/ekraf/submission'), 'badge' => '5'
-                        ],
-                        ['label' => 'Daftar Ekraf', 'url' => '/admin/ekraf', 'active' => request() -> is(
-                            'admin/ekraf'), 'badge' => ''],
-                        ['label' => 'Ekraf Dilaporkan', 'url' => '/admin/ekraf/report', 'active' => request() -> is(
-                            'admin/ekraf/report'), 'badge' => '4'],
-                        ['label' => 'Tambah Ekraf', 'url' => '/admin/ekraf/form', 'active' => request() -> is(
-                            'admin/ekraf/form'), 'badge' => '4'],
-                    ]"
-                    total_badge="4" />
+                        ['label' => 'Pengajuan Ekraf', 'url' => '/admin/ekraf/submission', 'active' => request() ->is('admin/ekraf/submission'), 'badge' => $submission],
+                        ['label' => 'Daftar Ekraf', 'url' => '/admin/ekraf', 'active' => request() -> is('admin/ekraf'), 'badge' => $resubmissionEkraf],['label' => 'Ekraf Dilaporkan', 'url' => '/admin/ekraf/report', 'active' => request() -> is('admin/ekraf/report'), 'badge' => ''],
+                        ['label' => 'Tambah Ekraf', 'url' => '/admin/ekraf/form', 'active' => request() -> is('admin/ekraf/form'), 'badge' => ''],
+                        ]"
+                    total_badge="{{ $submission + $resubmissionEkraf }}" />
             </li>
             {{-- sector --}}
             <li>
                 <x-sidebar.link-dropdown :active="request()->is('admin/sector*')" label="Sektor" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 18 18\"> <path d=\"M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z\" /> </svg>"'
                     :items="[
-                        ['label' => 'Tambah Sektor', 'url' => '/admin/sector/form', 'active' => request() ->
-                            is('admin/sector/form'), 'badge' => ''
-                        ],
-                        ['label' => 'Daftar Sektor', 'url' => '/admin/sector', 'active' => request() -> is(
-                            'admin/sector'), 'badge' => '4'],
-                    ]"
-                    total_badge="4" />
+                        ['label' => 'Tambah Sektor', 'url' => '/admin/sector/form', 'active' => request() ->is('admin/sector/form'), 'badge' => ''],
+                        ['label' => 'Daftar Sektor', 'url' => '/admin/sector', 'active' => request() -> is('admin/sector'), 'badge' => ''],
+                        ]"
+                    total_badge="" />
             </li>
             {{-- event --}}
             <li>
                 <x-sidebar.link-dropdown :active="request()->is('admin/event*')" label="Event" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\"> <path d=\"M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z\" /> <path d=\"M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z\" /> <path d=\"M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z\" /> </svg>"'
                     :items="[
-                        ['label' => 'Tambah Event', 'url' => '/admin/event/form', 'active' => request() -> is(
-                            'admin/event/form'), 'badge' => ''],
-                        ['label' => 'Pengajuan Event', 'url' => '/admin/event-submission', 'active' => request() -> is(
-                            'admin/event-submission'), 'badge' => '2'],
-                        ['label' => 'Eventmu', 'url' => '/admin/event-self', 'active' => request() -> is(
-                            'admin/event-self'), 'badge' => ''],
-                        ['label' => 'Semua Event', 'url' => '/admin/event', 'active' => request() -> is(
-                            'admin/event'), 'badge' => '2'],
-                    ]"
-                    total_badge="2" />
+                        ['label' => 'Tambah Event', 'url' => '/admin/event/form', 'active' => request() -> is('admin/event/form'), 'badge' => ''],
+                        ['label' => 'Eventmu', 'url' => '/admin/event-self', 'active' => request() -> is('admin/event-self'), 'badge' => ''],['label' => 'Semua Event', 'url' => '/admin/event', 'active' => request() -> is('admin/event'), 'badge' => $submissionEvent],
+                        ]"
+                    total_badge="{{ $submissionEvent }}" />
             </li>
             {{-- artikel --}}
             <li>
                 <x-sidebar.link-dropdown :active="request()->is('admin/article*')" label="Artikel" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\"> <path d=\"M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z\" /> <path d=\"M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z\" /> <path d=\"M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z\" /> </svg>"'
                     :items="[
-                        ['label' => 'Tambah Artikel', 'url' => '/admin/article/form', 'active' => request() -> is(
-                            'admin/article/form'), 'badge' => ''],
-                        ['label' => 'Artikel', 'url' => '/admin/article', 'active' => request() -> is(
-                            'admin/article'), 'badge' => '2'],
-                    ]"
-                    total_badge="2" />
+                        ['label' => 'Tambah Artikel', 'url' => '/admin/article/form', 'active' => request() -> is('admin/article/form'), 'badge' => ''],['label' => 'Artikel', 'url' => '/admin/article', 'active' => request() -> is('admin/article'), 'badge' => ''],
+                        ]"
+                    total_badge="" />
             </li>
             {{-- produk --}}
             <li>
-                <x-sidebar.link :active="request()->is('admin/product')" href="/admin/product" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\"aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\"viewBox=\"0 0 18 20\"><path d=\"M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z\" /></svg>"' label="Produk"
-                    badge="6" />
+                <x-sidebar.link :active="request()->is('admin/product')" href="/admin/product" :icon='"<svg class=\"shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white\"aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\"viewBox=\"0 0 18 20\"><path d=\"M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z\" /></svg>"' label="Produk Ekraf"
+                    badge="" />
             </li>
             {{-- inbox --}}
             <li>

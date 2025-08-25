@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Ekraf;
 use App\Models\Product;
 use App\Models\Productimg;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +24,39 @@ class ProductRepository implements ProductRepositoryInterface
             ->orderBy('name', 'desc')
             ->paginate($perPage);
     }
+
+    public function searchAndPaginateAll(?string $search = null, ?int $sectorId = null, int $perPage = 12)
+    {
+        return Product::query()
+            ->with(['ekraf', 'images'])
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                });
+            })
+            ->when($sectorId, function ($query, $sectorId) {
+                $query->whereHas('ekraf', function ($q) use ($sectorId) {
+                    $q->where('sector_id', $sectorId);
+                });
+            })
+            ->orderBy(
+                Ekraf::select('sector_id')
+                    ->whereColumn('ekrafs.id', 'products.ekraf_id')
+                    ->limit(1)
+            )
+            ->paginate($perPage);
+    }
+
     public function findBySlug($slug)
     {
         return Product::where('slug', $slug)->with(['images'])->first();
     }
+
+    public function findByEkraf(Ekraf $ekrafId)
+    {
+        return Product::where('ekraf_id', $ekrafId->id);
+    }
+
     public function createProduct(array $data): Product
     {
         return Product::create($data);

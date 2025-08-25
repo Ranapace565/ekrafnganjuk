@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use App\Models\Ekraf;
 use App\Models\Event;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -46,10 +48,14 @@ class EventService
         return $this->EventRepository->findBySlug($slug);
     }
 
+    public function findByUser(User $user)
+    {
+        return $this->EventRepository->findByUser($user);
+    }
+
     public function update(Event $Event, array $validated, $file = null)
     {
-        $wasRejected = $Event->status === 0;
-        $validated['status'] = 1;
+        $validated['status'] = 2;
 
         if ($file) {
             $slug = Str::slug($validated['title']);

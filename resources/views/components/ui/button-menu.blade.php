@@ -6,7 +6,7 @@
     'deleteUrl' => null,
 ])
 @if ($deleteUrl || $editUrl || $detailUrl != null)
-    <div class="flex justify-end m-1">
+    <div class="flex justify-end z-30">
         <button id="dropdownButton-{{ md5($id) }}" data-dropdown-toggle="dropdown-{{ md5($id) }}"
             class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"
             type="button">

@@ -18,7 +18,7 @@
 
             <div class="grid grid-cols-4">
 
-                <x-forms.img-cover name="poster" :size="'aspect-[3/4]'" />
+                <x-forms.img-cover name="poster" :size="'[3/4]'" />
             </div>
         </div>
     </div>

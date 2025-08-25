@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Models\Ekraf;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\EkrafRepository;
@@ -27,9 +28,19 @@ class ProductService
         $ekrafId = $this->ekrafRepository->findByUserId(Auth::id());
         return $this->ProductRepository->searchAndPaginate($search, $ekrafId->id);
     }
+
+    public function indexAll(?string $search = null, ?int $sector = null)
+    {
+        return $this->ProductRepository->searchAndPaginateAll($search, $sector);
+    }
+
     public function findBySlug($slug)
     {
         return $this->ProductRepository->findBySlug($slug);
+    }
+    public function findByEkraf(Ekraf $ekraf)
+    {
+        return $this->ProductRepository->findByEkraf($ekraf);
     }
     public function store(StoreProductRequest $request)
     {

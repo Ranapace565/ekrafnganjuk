@@ -76,7 +76,7 @@
             let popupContent = `
                 <div style="text-align:center;">
                     <a href="${googleMapsUrl}" target="_blank"
-                        class="inline-block px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition">
+                        class="inline-block px-3 py-1  text-white text-sm rounded hover:bg-green-100 transition">
                         📍 Buka di Google Maps
                     </a>
                 </div>

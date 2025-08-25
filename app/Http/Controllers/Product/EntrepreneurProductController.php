@@ -17,6 +17,7 @@ class EntrepreneurProductController extends Controller
 {
     public function index(Request $request, ProductService $ProductService)
     {
+
         $search = $request->input('search');
 
         $Products = $ProductService->index($search);

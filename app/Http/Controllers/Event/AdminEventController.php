@@ -33,6 +33,27 @@ class AdminEventController extends Controller
             'status'
         ));
     }
+
+    public function indexSelf(Request $request, EventService $EventService, SectorService $sectorService)
+    {
+        $search = $request->input('search');
+        $sectorId = $request->input('sector_id');
+        $status = $request->input('status');
+
+        $Events = $EventService->index($search, $sectorId,  $status);
+
+        $sector = $sectorId ? $sectorService->getById($sectorId) : null;
+        $sector = $sector ? $sector->name : null;
+
+        return view('main-admin.event-self', compact(
+            'Events',
+            'search',
+            'sector',
+            'sectorId',
+            'status'
+        ));
+    }
+
     public function store(StoreEventRequest $request, EventService $EventService)
     {
         try {
@@ -70,7 +91,7 @@ class AdminEventController extends Controller
 
             $EventService->update($Event, $validated, $file);
 
-            return redirect()->route('entrepreneur.event.')->with('success', 'Pengajuan Event berhasil diperbarui!');
+            return redirect()->route('admin.event.')->with('success', 'Pengajuan Event berhasil diperbarui!');
         } catch (AuthorizationException $e) {
             return back()->with('error', 'Tidak diizinkan melakukan perubahan.' . $e->getMessage());
         }

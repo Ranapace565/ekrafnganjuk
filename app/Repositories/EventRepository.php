@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class EventRepository implements EventRepositoryInterface
@@ -22,6 +22,7 @@ class EventRepository implements EventRepositoryInterface
             ->when($sectorId, fn($query) => $query->where('sector_id', $sectorId))
             ->when(is_numeric($status), fn($query) => $query->where('status', $status))
             ->orderBy('status', 'asc')
+            ->orderBy('start_date', 'desc')
             ->paginate($perPage);
     }
     public function searchAndPaginate(?string $search = null, ?int $sectorId = null, ?int $status = null, int $perPage = 12)
@@ -53,8 +54,14 @@ class EventRepository implements EventRepositoryInterface
         return Event::where('slug', $slug)->first();
     }
 
+    public function findByUser(User $user)
+    {
+        return Event::where('user_id', $user->id)->where('status', '2');
+    }
+
     public function update(Event $event, array $data): Event
     {
+        // dd();
         $event->update($data);
         return $event;
     }

@@ -61,7 +61,7 @@
                 ]">
                 </x-ui.popover>
             </label>
-            <x-forms.img-cover :data="$data" name="cover" :size="'aspect-[16/5]'" />
+            <x-forms.img-cover :data="$data" name="cover" :size="'[16/5]'" />
         </div>
     </div>
 </div>

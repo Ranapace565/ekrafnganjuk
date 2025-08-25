@@ -6,7 +6,7 @@
 
     <div class="col-span-2 sm:col-span-1 mt-4 border-t-2">
         <label for="location" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white mt-4">Catatan untuk
-            pengaju
+            pengaju jika ditolak
             <span class="text-red-600">*</span> <x-ui.popover id="admin-note" :messages="[
                 [
                     'title' => 'Catatan untuk pengaju',

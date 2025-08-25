@@ -37,4 +37,5 @@ export default {
         },
     },
     plugins: [require("flowbite-typography")],
+    safelist: ["aspect-[16/9]", "aspect-[3/4]", "aspect-[16/5]"],
 };

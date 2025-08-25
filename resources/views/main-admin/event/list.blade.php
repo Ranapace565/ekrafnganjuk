@@ -10,6 +10,6 @@
                 @endforeach
             @endif
         </div>
-        <x-ui.pagination />
+        <x-ui.pagination :paginator="$Events" />
     </div>
 </section>

@@ -10,7 +10,13 @@
             </x-ui.popover>
         </h2>
         <i class="dark:text-gray-100 text-sm">(<span class="text-red-600">*</span>)Wajib diisi</i>
-        @include('main-admin.sector-form.form-foto')
-        @include('main-admin.sector-form.form-informasi')
+
+        <x-forms.validation-notive />
+
+        <form method="POST" action="{{ route('admin.sector.store') }}" enctype="multipart/form-data">
+            @csrf
+            @include('main-admin.sector-form.form-foto')
+            @include('main-admin.sector-form.form-informasi')
+        </form>
     </div>
 </x-layouts.admin>

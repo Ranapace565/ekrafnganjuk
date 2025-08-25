@@ -14,7 +14,6 @@
         <form method="POST" action="{{ route('entrepreneur.event.store') }}" enctype="multipart/form-data">
             @csrf
             @include('main-entrepreneur.event-form.form-foto')
-            <button type="submit">ff</button>
             @include('main-entrepreneur.event-form.form-information')
         </form>
     </div>

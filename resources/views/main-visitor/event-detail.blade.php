@@ -3,7 +3,6 @@
         <div class="grid max-w-screen-xl px-4 py-4 mx-auto lg:grid-cols-12">
             {{-- side link --}}
             <div class="lg:col-span-3 hidden lg:block">
-                {{-- @include('main-visitor.event-detail.search') --}}
                 <x-search.event-card />
             </div>
             {{--  --}}

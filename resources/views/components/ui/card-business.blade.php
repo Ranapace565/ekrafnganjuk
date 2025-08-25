@@ -6,7 +6,7 @@
     'deleteUrl' => '',
     'title' => 'Judul Usaha',
     'location' => null,
-    'image' => 'https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png',
+    'image' => asset('img/Logo/logo_kreasikan.svg'),
     'status' => '',
     'sector_id' => '',
     'manager' => null,
@@ -21,9 +21,7 @@
         <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
     </div>
     <div class="w-full">
-        <a href="#">
-            <img class="mx-auto h-32 w-32 rounded-full object-cover" src="{{ $image }}" alt="" />
-        </a>
+        <img class="mx-auto h-32 w-32 rounded-full object-cover" src="{{ $image }}" alt="" />
     </div>
     <div class="pt-6 flex items-center justify-between flex-col">
         <div class="mb-4 flex items-center justify-between gap-1">

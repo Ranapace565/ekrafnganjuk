@@ -2,6 +2,7 @@
     'id' => uniqid(),
     'image' => asset('images/no-image.png'),
     'title' => '',
+    'sector' => '',
     'price' => null,
     'detailUrl' => null,
     'editUrl' => null,
@@ -18,7 +19,12 @@
 
     <div class="my-1 p-4">
 
-        <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
+        <div class="flex justify-between my-2">
+            <span
+                class="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                {{ Str::limit($sector, 20, '..') }}</span>
+            <x-ui.button-menu :detailUrl="$detailUrl" :editUrl="$editUrl" :deleteUrl="$deleteUrl" />
+        </div>
 
         <a href="{{ $detailUrl }}"
             class="text-sm font-semibold leading-tight text-gray-900 hover:underline dark:text-white">

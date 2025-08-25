@@ -27,7 +27,7 @@
                                 class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                             </div>
                             <time class="mb-1 text-sm text-gray-400 dark:text-gray-500">
-                                {{ optional($event->created_at)->format('d M Y') }}
+                                {{ \Carbon\Carbon::createFromFormat('m/d/Y', $event->start_date)->format('d M Y') }}
                             </time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                                 {{ Str::limit($event->title, 50, '..') }}

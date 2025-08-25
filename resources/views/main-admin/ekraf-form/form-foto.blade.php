@@ -34,7 +34,7 @@
                 ]">
                 </x-ui.popover>
             </label>
-            <x-forms.img-cover name="cover" :size="'aspect-[16/4]'" />
+            <x-forms.img-cover name="cover" :size="'[16/4]'" />
         </div>
     </div>
 </div>

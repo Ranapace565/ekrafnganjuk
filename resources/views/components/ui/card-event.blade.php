@@ -26,7 +26,7 @@
 
             <div class="break-words">
                 <h5 class="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-                    {{ Str::limit($title, 70, '..') }}
+                    {{ Str::limit($title, 50, '..') }}
                 </h5>
             </div>
 
