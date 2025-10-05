@@ -15,7 +15,7 @@
             </label>
 
             <div class="grid grid-cols-4">
-                <x-forms.img-cover name="icon" :size="'[1/1]'" :required="true" :data="$data" />
+                <x-forms.img-cover name="icon" :size="'[1/1]'" :required="true" />
             </div>
 
         </div>

@@ -49,7 +49,7 @@ class EntrepreneurEkrafController extends Controller
             $ekrafService->update($ekraf, $validated);
 
             return redirect()
-                ->route('entrepreneur.business.detail')
+                ->route('entrepreneur.ekraf.detail')
                 ->with('success', 'Data ' . $validated['name'] . ' berhasil diperbarui.');
         } catch (\Exception $e) {
             Log::error('Gagal memperbarui data ekraf: ' . $e->getMessage());

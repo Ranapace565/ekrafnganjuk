@@ -16,7 +16,7 @@
         <form method="POST" action="{{ route('admin.sector.store') }}" enctype="multipart/form-data">
             @csrf
             @include('main-admin.sector-form.form-foto')
-            @include('main-admin.sector-form.form-informasi')
+            @include('main-admin.sector-form.form-information')
         </form>
     </div>
 </x-layouts.admin>

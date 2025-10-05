@@ -68,6 +68,6 @@
                 </div>
             </div>
         </div>
-        <x-search.sec-horizontal :sector="$sector" />
+        <x-search.Sechorizontal :sectors="$sector" />
     </div>
 </section>

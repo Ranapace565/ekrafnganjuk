@@ -1,5 +1,5 @@
 @props([
-    'sector' => '',
+    'sectors' => '',
     'selectedSector' => null,
 ])
 <div class="flex overflow-x-auto gap-4 py-4 px-2 scrollbar-custom">
